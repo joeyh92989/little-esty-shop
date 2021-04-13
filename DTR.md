@@ -55,7 +55,7 @@ Workflow Expectations (Git workflow/Tools/Code Review/Reviewing Pull Requests/De
  * PR and code checks
  
 Pomodoro Break Schedule:
- * Up to each of us, but implement as needed
+ * Up to each of us, but implement as needed.
  * Austin is taking anime poms, work for 60mins
  
 Expectations for giving and receiving feedback:
