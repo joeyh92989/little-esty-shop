@@ -1,22 +1,22 @@
-Project: Little esty shop
+Project: Little Esty Shop
 
-Group Member Names: Joe Joe Ray, Joey from the block, Austin Powers, Archduke Carlyle
+Group Member Names: Joe Joe Ray, Joey from the block, Austin Powers, Archduke Dougie
 
 Goals and Expectations for the Project (What does each group member hope to get out of this project? What do we want to achieve as a team? How will we know that we're successful?):
 * Joey & Joe Joe - be happy with the work
-* Austion Power- what we get done, make sure we are hammered
-* Archduke Carlyle- silent, but everpresent
+* Austin Power- what we get done, make sure we are hammered
+* Archduke Dougie - Gain further proficiency with backend workflows and concepts
 
 Team strengths & collaboration styles (consider discussing your Pairin qualities here):
 * Joe Joe: Experimentation
 * Joey : Planning and getting it done, poor attention to detail
-* Austin Powers: TDD and Attention to detail
-* Carlyle: Really good at Magic the Gathering 
+* Austion Powers: TDD and Attention to detail
+* Dougie: Plenty of resources to inquire from (roommates, alumni, dev friends, mentors, etc.)
 
 How we can use our strengths to overcome obstacles:
-* Austion will keep us on track with TDD
+* Austin will keep us on track with TDD
 * Joes will bull through to get it done or try something new
-*  Carlyle will use fireball
+* Try and minimize how long roadblocks last.
 
 Schedule Expectations (When are we available to work together and individually? What constraints do we have? Make sure to discuss the remote questions above in regards to this section):
 * Joey
@@ -29,8 +29,10 @@ Schedule Expectations (When are we available to work together and individually? 
   * M-F cutoff, 9PM MST
   * Sat-Sun Prefer solo work
   * 3ish hours a night  
-* Carlyle
-  * Open to be bugged 24/7 
+* Dougie
+  * M-F cutoff, 7PM MST
+  * Sat - Available after 1PM MST
+  * Sun - Unavailable
 
 Communication Expectations (How and often will we communicate? How do we keep lines of communication open? How will we make decisions as a team? How will we communicate about our emotional and mental well-being with each other?):
 * Slack
@@ -46,24 +48,25 @@ Workload Expectations (What features do we each want to work on?):
     *  💪🏻 Joey 
   *  Merchants
     *   🧠 Joe Joe
-    *   ⚡️ Carlyle
+    *   ⚡️ Dougie
 
 Workflow Expectations (Git workflow/Tools/Code Review/Reviewing Pull Requests/Debugging and Problem-solving Techniques):
  * We assign tickets
  * PR and code checks
  
 Pomodoro Break Schedule:
- * Up to each of us, but implement as needed
+ * Up to each of us, but implement as needed.
  * Austin is taking anime poms, work for 60mins
  
 Expectations for giving and receiving feedback:
  * Say it from your chest
  
 Additional Remote Considerations:
- * nothing
+ * Nothing
 
 
-Project management tools we will use (GitHub projects or Trello are popular tools): Github because its mandatory
+Project management tools we will use (GitHub projects or Trello are popular tools):
+ * Github because its mandatory
 
 Day 1 Agenda:
 
