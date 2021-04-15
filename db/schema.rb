@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(version: 2021_04_15_000930) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
+# drop and remigrate
   create_table "dashboards", force: :cascade do |t|
     t.bigint "merchant_id"
     t.string "name"
     t.index ["merchant_id"], name: "index_dashboards_on_merchant_id"
   end
-
+  # unit_price might better stored as a float with an inserted point on the last two digits
   create_table "invoice_items", force: :cascade do |t|
     t.integer "quantity"
     t.integer "unit_price"
