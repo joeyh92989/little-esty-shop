@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'the admin application- show' do
+RSpec.describe 'the admin application index' do
   # before(:each) do
   # end
 
