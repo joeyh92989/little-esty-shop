@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'the admin merchants update' do
   before(:each) do
-    @merchant_1 = Merchant.create!(name: 'Mike Brown')
+    @merchant_1 = create(:merchant)
   end
 
 
@@ -23,7 +23,7 @@ RSpec.describe 'the admin merchants update' do
       expect(current_path).to eq("/admin/merchants/#{@merchant_1.id}")
 
       expect(page).to have_content("successfully updated!")
-      expect(page).to have_content("\nJoey Haandsome")
+      expect(page).to_not have_content("#{@merchant_1.name}")
       expect(page).to_not have_content('Mike Brown')
     end
   end

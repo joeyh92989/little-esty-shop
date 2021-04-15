@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'the admin merchants show' do
   before(:each) do
-    @merchant_1 = Merchant.create!(name: 'Mike Brown')
+    @merchant_1 = create(:merchant)
   end
 
     it 'renders an update button' do
