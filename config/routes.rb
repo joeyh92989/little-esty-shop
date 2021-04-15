@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get "/", to: 'application#welcome'
+
+  # get "/merchants/:merchant_id/dashboard" to: 'merchant#show'
+
+  resources :merchants do
+    resources :dashboard, only: [:index]
+  end
+
+  namespace :admin do
+    resources :merchants
+  end
+
 end
