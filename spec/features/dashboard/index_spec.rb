@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 
-RSpec.describe 'merhcant dashboard' do
-  it "shows merhchant name" do
+RSpec.describe 'merchant dashboard' do
+  it "shows merchant name" do
     merchant_1 = create(:merchant)
 
     visit "/merchants/#{merchant_1.id}/dashboard"
