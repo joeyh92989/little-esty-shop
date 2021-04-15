@@ -1,5 +1,5 @@
 <h1> All Merchants: <br>
   <% @merchants.each do |merchant| %>
-    <%= merchant.name %> <br>
+   <%= link_to "#{merchant.name},", {controller: "admin/merchants", action: "show", id: "#{merchant.id}"} %> <br>
   <% end %>
 </h1>
