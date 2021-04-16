@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_034828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
   create_table "invoice_items", force: :cascade do |t|
     t.integer "quantity"
     t.integer "unit_price"
@@ -60,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_034828) do
   create_table "transactions", force: :cascade do |t|
     t.string "credit_card_number"
     t.date "credit_card_expiration_date"
-    t.string "result"
+    t.integer "result"
     t.bigint "invoice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

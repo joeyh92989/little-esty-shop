@@ -22,7 +22,7 @@ RSpec.describe Customer, type: :model do
   describe '::class methods' do
       it 'returns top 5 customers' do
         binding.pry
-        expect(Pet.search("Claw")).to eq([@pet_2])
+        expect(Customer.top_5).to eq([@customer[0..4]])
       end
   end
 end
