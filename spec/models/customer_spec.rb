@@ -10,11 +10,14 @@ RSpec.describe Customer, type: :model do
   end
   
   before(:each) do
- 
-    @merchant_1 = create :merchant
-    @item_1 = create_list :item, 10, merchant: @merchant_1
-    @invoice_item_1 = create_list :invoice_item, 10
-    binding.pry
+    @customer = create_list(:customer, 6)
+    @invoice = @customer.each{|customer| create :invoice, customer: customer}
+    @transaction_1 = create_list :transaction, 10, invoice: @customer[0].invoices.first
+    @transaction_2 = create_list :transaction, 10, invoice: @customer[1].invoices.first
+    @transaction_3 = create_list :transaction, 10, invoice: @customer[2].invoices.first
+    @transaction_4 = create_list :transaction, 10, invoice: @customer[3].invoices.first
+    @transaction_5 = create_list :transaction, 10, invoice: @customer[4].invoices.first
+    @transaction_6 = create_list :transaction, 10, result: 1, invoice: @customer[5].invoices.first
   end
   describe '::class methods' do
       it 'returns top 5 customers' do
