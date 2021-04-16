@@ -21,9 +21,13 @@ RSpec.describe Customer, type: :model do
   end
   describe '::class methods' do
       it 'returns top 5 customers' do
-        # expect(Customer.top_5).to match_array()
+        binding.pry
         expect(Customer.top_5).to contain_exactly(@customer[0],@customer[1],@customer[2],@customer[3],@customer[4])
-        # expect(Customer.top_5-@customer[0..4]).to eq([])
       end
+  end
+  describe '#instance methods' do
+    it 'returns the # of succesful transactions' do
+      expect(@customer[5].number_of_succesful_transactions).to eq(0)
+    end
   end
 end
