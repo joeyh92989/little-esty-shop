@@ -21,7 +21,7 @@ RSpec.describe Customer, type: :model do
   end
   describe '::class methods' do
       it 'returns top 5 customers' do
-        binding.pry
+
         expect(Customer.top_5).to contain_exactly(@customer[0],@customer[1],@customer[2],@customer[3],@customer[4])
       end
   end

@@ -10,11 +10,10 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :merchants do
+    resources :merchants, :invoices do
       member do
         post :update_status
       end
     end
-    resources :invoices
   end
 end
