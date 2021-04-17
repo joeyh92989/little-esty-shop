@@ -75,7 +75,7 @@ RSpec.describe 'the admin application index' do
   it 'lists invoices with unshipped items' do
     visit "/admin"
     save_and_open_page
-
+    binding.pry
     expect(page).to_not have_content(@invoice_2[0].id)
 
     within "#invoice-#{@invoice_2[1].id}" do

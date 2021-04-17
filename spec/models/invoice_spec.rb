@@ -20,9 +20,8 @@ RSpec.describe Invoice, type: :model do
     
   end
   describe '::class methods' do
-      it 'returns invoices with unshipped items' do
-        
-        expect(Invoice.unshipped).to contain_exactly(@invoice[1],@invoice[2])
-      end
+    it 'returns invoices with unshipped items' do
+      expect(Invoice.unshipped).to contain_exactly(@invoice[1],@invoice[2])
+    end
   end
 end
