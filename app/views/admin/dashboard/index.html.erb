@@ -16,7 +16,7 @@
     <% end %>
   <div class="col-sm-6">
   <h2>Invoices With Unshipped Items</h2>
-  <% @invoices.unshipped.each do |invoice| %>
+  <% @invoices.unshipped.sort.each do |invoice| %>
       <div id="invoice-<%= invoice.id %>">
         <%=link_to "Invoice-#{invoice.id}", "admin/invoice/#{invoice.id}" %>
         <br>

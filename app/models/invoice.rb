@@ -12,4 +12,7 @@ class Invoice < ApplicationRecord
     self.joins(:invoice_items).group(:id).where.not('invoice_items.status = ?', 2)
   end
 
+  def self.sort
+    self.order(created_at: :desc)
+  end
 end
