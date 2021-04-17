@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'the admin invoice show' do
   before(:each) do
     @invoice= create :invoice
-    @invoice_items = create_list :invoice_items, 10, invoice: @invoice
+    @invoice_items = create_list :invoice_item, 10, invoice: @invoice
   end
 
   it 'admin invoice show ' do
