@@ -5,7 +5,7 @@ RSpec.describe 'the admin merchants index' do
     @merchant_1 = create(:merchant)
     @merchant_2 = create(:merchant)
     @merchant_3 = create(:merchant)
-    @merchant_4 = create(:merchant, status: "disabled")
+    @merchant_4 = create(:merchant, status: "enabled")
   end
 
   it 'lists the names of all merchants in the system' do
@@ -37,17 +37,16 @@ RSpec.describe 'the admin merchants index' do
       visit "/admin/merchants"
 
       within "#merchant-#{@merchant_1.id}" do
-        expect(page).to have_button('disable')
-        click_button "disable"
+        expect(page).to have_button('enable')
+        click_button "enable"
       end
 
       expect(current_path).to eq("/admin/merchants")
 
       within "#merchant-#{@merchant_1.id}" do
-        expect(page).to have_button('enable')
+        expect(page).to have_button('disable')
       end
-
-      expect(page).to have_content("has been disabled!")
+      expect(page).to have_content("has been enabled!")
     end
   end
 
@@ -56,17 +55,26 @@ RSpec.describe 'the admin merchants index' do
       visit "/admin/merchants"
 
       within "#merchant-#{@merchant_4.id}" do
-        expect(page).to have_button('enable')
-        click_button "enable"
+        expect(page).to have_button('disable')
+        click_button "disable"
       end
 
       expect(current_path).to eq("/admin/merchants")
 
       within "#merchant-#{@merchant_4.id}" do
-        expect(page).to have_button('disable')
+        expect(page).to have_button('enable')
       end
 
-      expect(page).to have_content("has been enabled!")
+      expect(page).to have_content("has been disabled!")
     end
+  end
+
+  it "clicks create link and redirects to create page" do
+    visit "/admin/merchants"
+
+    expect(page).to have_link('Create New Merchant')
+    click_link 'Create New Merchant'
+
+    expect(current_path).to eq("/admin/merchants/new")
   end
 end
