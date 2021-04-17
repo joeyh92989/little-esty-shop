@@ -15,4 +15,8 @@ class Invoice < ApplicationRecord
   def self.sort
     self.order(created_at: :desc)
   end
+
+  def total_revenue
+    invoice_items.sum('invoice_items.unit_price * invoice_items.quantity')
+  end
 end
