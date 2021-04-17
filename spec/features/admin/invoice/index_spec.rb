@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'the admin application index' do
+RSpec.describe 'the admin invoice index' do
   before(:each) do
     @invoice= create_list :invoice, 3
   end

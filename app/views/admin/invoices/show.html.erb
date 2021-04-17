@@ -1,0 +1,10 @@
+<h1>Admin Invoice Show</h1>
+
+<h3>Invoice Details</h3>
+<div id="invoice-<%= @invoice.id %>">
+<p>Invoice ID:<%= @invoice.id%><p>
+<p>Invoice Status:<%=@invoice.status%><p>
+<p>Invoice Creation Date:<%=@invoice.created_at.to_time.strftime(' %A, %B %e, %Y')%><p>
+<p>Invoice Customer:<%=@invoice.customer.first_name%> <%=@invoice.customer.last_name%><p>
+</div>
+
