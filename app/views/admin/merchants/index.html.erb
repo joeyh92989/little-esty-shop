@@ -2,7 +2,7 @@
 <h2> <% @enabled_merchants.each do |merchant| %>
   <div id="merchant-<%= merchant.id %>">
     <%= link_to "#{merchant.name},", {controller: "admin/merchants", action: "show", id: "#{merchant.id}"} %>
-    <%= button_to "disable", {controller: "/merchants", action: "update_status", id: "#{merchant.id}", :status => 'disable'} %>
+    <%= button_to "disable", {controller: "admin/merchants", action: "update_status", id: "#{merchant.id}", :status => 'disable'} %>
   </div>
   <% end %>
 </h2>
@@ -11,7 +11,7 @@
 <h2> <% @disabled_merchants.each do |merchant| %>
   <div id="merchant-<%= merchant.id %>">
     <%= link_to "#{merchant.name},", {controller: "admin/merchants", action: "show", id: "#{merchant.id}"} %>
-    <%= button_to "enable", {controller: "/merchants", action: "update_status", id: "#{merchant.id}", :status => 'enable'} %>
+    <%= button_to "enable", {controller: "admin/merchants", action: "update_status", id: "#{merchant.id}", :status => 'enable'} %>
   </div>
   <% end %>
 </h2>
