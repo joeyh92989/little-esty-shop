@@ -15,7 +15,5 @@ Rails.application.routes.draw do
         post :update_status
       end
     end
-    resources :invoices
-
   end
 end
