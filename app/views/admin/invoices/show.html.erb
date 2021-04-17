@@ -5,7 +5,7 @@
 <p>Invoice ID:<%= @invoice.id%><p>
 <p>Invoice Status:<%=@invoice.status%> 
 <%= form_with url: "/admin/invoices/#{@invoice.id}", method: :patch, local: true do |f| %>
-<%= f.select :status, ["completed", "cancelled", "in progress"] %>
+<%= f.select :status, ["completed", "cancelled", "in progress"], :selected => @invoice.status%>
 <%= f.submit %>
 <% end %><p>
 <p>Invoice Creation Date:<%=@invoice.created_at.to_time.strftime(' %A, %B %e, %Y')%><p>
