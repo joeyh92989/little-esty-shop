@@ -10,9 +10,12 @@
 </div>
 
 <h2>Items on Invoice</h2>
-  <% @invoices.invoiceitem.each do |invoice_item| %>
+  <% @invoice.invoice_items.each do |invoice_item| %>
       <div id="invoice-item-<%= invoice_item.id %>">
-        <%=link_to "Invoice:#{invoice.id}", "admin/invoice/#{invoice.id}" %>
+        <p>Item Name:<%= invoice_item.item.name%><p>
+        <p>Item Name:<%= invoice_item.quantity%><p>
+        <p>Item Name:<%= invoice_item.unit_price%><p>
+        <p>Item Name:<%= invoice_item.status%><p>
         <br>
       </div>
   <% end %>
