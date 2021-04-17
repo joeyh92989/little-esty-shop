@@ -9,3 +9,10 @@
 <p>Invoice Total Revenue:<%= @invoice.total_revenue%><p>
 </div>
 
+<h2>Items on Invoice</h2>
+  <% @invoices.invoiceitem.each do |invoice_item| %>
+      <div id="invoice-item-<%= invoice_item.id %>">
+        <%=link_to "Invoice:#{invoice.id}", "admin/invoice/#{invoice.id}" %>
+        <br>
+      </div>
+  <% end %>
