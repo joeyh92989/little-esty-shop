@@ -26,14 +26,12 @@ RSpec.describe Invoice, type: :model do
   end
   describe '#instance methods' do
     it 'returns total revenue' do
-      invoice_1= create :invoice
+      invoice_1 = create :invoice
       invoice_item_1 = create :invoice_item, quantity: 5, unit_price: 100, invoice: invoice_1
       invoice_item_2 = create :invoice_item, quantity: 10, unit_price: 100, invoice: invoice_1
       invoice_item_3 = create :invoice_item, quantity: 1, unit_price: 100, invoice: invoice_1
-      
-      expect(Invoice_1.total_revenue).to eq(1600)
+      expect(invoice_1.total_revenue).to eq(1600)
     end
   end
 end
 
-#Invoice.first.invoice_items.sum('invoice_items.unit_price * invoice_items.quantity')
