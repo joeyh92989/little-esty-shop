@@ -24,4 +24,14 @@ RSpec.describe Invoice, type: :model do
       expect(Invoice.unshipped).to contain_exactly(@invoice[1],@invoice[2])
     end
   end
+  describe '#instance methods' do
+    it 'returns total revenue' do
+      invoice_1 = create :invoice
+      invoice_item_1 = create :invoice_item, quantity: 5, unit_price: 100, invoice: invoice_1
+      invoice_item_2 = create :invoice_item, quantity: 10, unit_price: 100, invoice: invoice_1
+      invoice_item_3 = create :invoice_item, quantity: 1, unit_price: 100, invoice: invoice_1
+      expect(invoice_1.total_revenue).to eq(1600)
+    end
+  end
 end
+
