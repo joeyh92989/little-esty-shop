@@ -19,7 +19,7 @@ RSpec.describe 'the merchant invoice index' do
     visit "/merchants/#{@merchant.id}/invoices"
 
     expect(page).to have_content("Merchant Invoices")
-    save_and_open_page
+
     within "#invoice-#{@merchant_invoices[0].id}" do
       expect(page).to have_content(@merchant.invoices[0].id)
       expect(page).to have_link("Invoice:#{@merchant.invoices[0].id}")
