@@ -27,18 +27,18 @@ RSpec.describe 'the admin application index' do
     visit "/admin"
 
     click_link('Merchant Index')
-    expect(current_path).to eq('/admin/merchants') 
+    expect(current_path).to eq('/admin/merchants')
   end
 
   it 'has a link to admin invoice path' do
     visit "/admin"
 
     click_link('Invoice Index')
-    expect(current_path).to eq('/admin/invoices') 
+    expect(current_path).to eq('/admin/invoices')
   end
   it 'lists the top 5 customers with their number of succesful transctions' do
     visit "/admin"
-    
+
 
     expect(page).to_not have_content(@customer[5].first_name)
 
@@ -74,12 +74,12 @@ RSpec.describe 'the admin application index' do
   end
   it 'lists invoices with unshipped items' do
     visit "/admin"
-    
+
     expect(page).to_not have_content(@invoice_2[0].id)
 
     within "#invoice-#{@invoice_2[1].id}" do
       expect(page).to have_content(@invoice_2[1].id)
-      
+
     end
     within "#invoice-#{@invoice_2[2].id}" do
       expect(page).to have_content(@invoice_2[2].id)

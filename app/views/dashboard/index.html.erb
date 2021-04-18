@@ -2,4 +2,13 @@
 
 
 <%= link_to 'Items', "/merchants/#{@merchant.id}/items" %><br/>
-<%= link_to 'Invoices', "/merchants/#{@merchant.id}/invoices" %>
+<%= link_to 'Invoices', "/merchants/#{@merchant.id}/invoices" %><br/><br/>
+
+
+<h4>Items Ready to Ship</h4><br/>
+<% @invoice_items_not_shipped.each do |invoice_item|  %>
+
+  <ul>
+    <li><%= invoice_item.item.name %>  -  <%= link_to "Invoice ##{invoice_item.invoice_id}", "/merchants/#{@merchant.id}/invoices/#{invoice_item.invoice_id}" %>  -  <%= invoice_item.invoice.date %></li>
+  </ul>
+<% end %>
