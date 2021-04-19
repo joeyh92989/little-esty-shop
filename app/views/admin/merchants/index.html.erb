@@ -5,6 +5,8 @@
   <% @top_5_by_revenue.each do |merchant| %>
   <div id="top_merchant-<%= merchant.id %>">
     <h2> <%= link_to "#{merchant.name}:", {controller: "admin/merchants", action: "show", id: "#{merchant.id}"} %> $<%= merchant.total_revenue %>
+    <br>
+    Top selling date for <%= merchant.name %> was <%= merchant.top_merchant_best_day.to_time.strftime(' %A, %B %e, %Y') %>
     </h2>
   </div>
   <% end %>

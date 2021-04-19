@@ -31,4 +31,13 @@ class Merchant < ApplicationRecord
     .values
     .sum
   end
+
+  def top_merchant_best_day
+    invoices.joins(:invoice_items)
+    .select('invoices.created_at, sum(invoice_items.quantity * invoice_items.unit_price) AS total_revenue')
+    .group('created_at')
+    .order('total_revenue')
+    .first
+    .created_at
+  end
 end
