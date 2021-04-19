@@ -26,19 +26,19 @@ RSpec.describe 'the merchant invoice show' do
       expect(page).to have_content(@merchant_invoices.first.customer.last_name)
     end
   end
-  # it 'displays the total revenue within the admin invoice show ' do
-  #   visit "/admin/invoices/#{@invoice.id}"
+  it 'displays the total revenue within the admin invoice show ' do
+    visit "/merchants/#{@merchant.id}/invoices/#{@merchant_invoices.first.id})"
 
 
-  #   within "#invoice-#{@invoice.id}" do
-  #     expect(page).to have_content(@invoice.total_revenue)
+    within "#invoice-#{@merchant_invoices.first.id}" do
+      expect(page).to have_content(@merchant_invoices.first.total_revenue)
       
-  #   end
-  # end
+    end
+  end
   it 'displays the invoice item details' do
     visit "/merchants/#{@merchant.id}/invoices/#{@merchant_invoices.first.id})"
 
-    binding.pry
+    
     within "#invoice-item-#{@invoice_items[0].id}" do
       expect(page).to have_content(@invoice_items[0].item.name)
       expect(page).to have_content(@invoice_items[0].quantity)
@@ -58,18 +58,28 @@ RSpec.describe 'the merchant invoice show' do
       expect(page).to have_content(@invoice_items[2].status)
     end
   end
-  # it 'has a drop down selector for invoice status and allows user to update the value ' do
-  #   invoice= create :invoice, status: 2
-  #   visit "/admin/invoices/#{invoice.id}"
-  #   save_and_open_page
+  it 'has a drop down selector for item status and allows user to update the value ' do
+    merchant = create(:merchant)
+    customer = create_list(:customer, 6)
+    item_1 = create_list :item, 10, merchant: merchant
+    invoice_2 = create :invoice
+    invoice_items_1 = create :invoice_item, status: 0, invoice: invoice_2, item: item_1.first
+    transaction_1 = create_list :transaction, 10, invoice: merchant.invoices.first
 
-  #   within "#invoice-#{invoice.id}" do
-  #     expect(page).to have_field('status', with: "#{invoice.status}")
-  #     page.select 'completed', from: 'status'
-  #     click_button 'Save'
-  #   end
-  #   within "#invoice-#{invoice.id}" do
-  #     expect(page).to have_content('completed')
-  #   end
-  # end
+    merchant_invoices = merchant.invoices.uniq
+    invoice_items = merchant_invoices.first.invoice_items
+
+
+    visit "/merchants/#{merchant.id}/invoices/#{merchant_invoices.first.id})"
+
+    
+    within "#invoice-item-#{invoice_items[0].id}" do
+      expect(page).to have_field('status', with: "#{invoice_items[0].status}")
+      page.select 'packaged', from: 'status'
+      click_button 'Save'
+    end
+    within "#invoice-item-#{invoice_items[0].id}" do
+      expect(page).to have_content('packaged')
+    end
+  end
 end
