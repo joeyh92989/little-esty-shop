@@ -26,19 +26,19 @@ RSpec.describe 'the merchant invoice show' do
       expect(page).to have_content(@merchant_invoices.first.customer.last_name)
     end
   end
-  # it 'displays the total revenue within the admin invoice show ' do
-  #   visit "/admin/invoices/#{@invoice.id}"
+  it 'displays the total revenue within the admin invoice show ' do
+    visit "/merchants/#{@merchant.id}/invoices/#{@merchant_invoices.first.id})"
 
 
-  #   within "#invoice-#{@invoice.id}" do
-  #     expect(page).to have_content(@invoice.total_revenue)
+    within "#invoice-#{@merchant_invoices.first.id}" do
+      expect(page).to have_content(@merchant_invoices.first.total_revenue)
       
-  #   end
-  # end
+    end
+  end
   it 'displays the invoice item details' do
     visit "/merchants/#{@merchant.id}/invoices/#{@merchant_invoices.first.id})"
 
-    binding.pry
+    
     within "#invoice-item-#{@invoice_items[0].id}" do
       expect(page).to have_content(@invoice_items[0].item.name)
       expect(page).to have_content(@invoice_items[0].quantity)
