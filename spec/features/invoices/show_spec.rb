@@ -58,18 +58,28 @@ RSpec.describe 'the merchant invoice show' do
       expect(page).to have_content(@invoice_items[2].status)
     end
   end
-  # it 'has a drop down selector for invoice status and allows user to update the value ' do
-  #   invoice= create :invoice, status: 2
-  #   visit "/admin/invoices/#{invoice.id}"
-  #   save_and_open_page
+  it 'has a drop down selector for item status and allows user to update the value ' do
+    merchant = create(:merchant)
+    customer = create_list(:customer, 6)
+    item_1 = create_list :item, 10, merchant: merchant
+    invoice_2 = create :invoice
+    invoice_items_1 = create :invoice_item, status: 0, invoice: invoice_2, item: item_1.first
+    transaction_1 = create_list :transaction, 10, invoice: merchant.invoices.first
 
-  #   within "#invoice-#{invoice.id}" do
-  #     expect(page).to have_field('status', with: "#{invoice.status}")
-  #     page.select 'completed', from: 'status'
-  #     click_button 'Save'
-  #   end
-  #   within "#invoice-#{invoice.id}" do
-  #     expect(page).to have_content('completed')
-  #   end
-  # end
+    merchant_invoices = merchant.invoices.uniq
+    invoice_items = merchant_invoices.first.invoice_items
+
+
+    visit "/merchants/#{@merchant.id}/invoices/#{@merchant_invoices.first.id})"
+
+    
+    within "#invoice-item-#{invoice_items[0].id}" do
+      expect(page).to have_field('status', with: "#{invoice.status}")
+      page.select 'packaged', from: 'status'
+      click_button 'Save'
+    end
+    within "#invoice-item-#{invoice_items[0].id}" do
+      expect(page).to have_content('packaged')
+    end
+  end
 end
