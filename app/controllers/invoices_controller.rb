@@ -5,13 +5,16 @@ class InvoicesController < ApplicationController
     @merchant_invoices = @merchant.invoices.uniq
   end
   def show 
+
     @merchant = Merchant.find(params[:merchant_id])
     @invoice = Invoice.find(params[:id])
   end
   def update
-    binding.pry
+
+    merchant = Merchant.find(params[:merchant_id])
     invoice = Invoice.find(params[:id])
-    invoice.update(status: params[:status])
-    redirect_to "/admin/invoices/#{params[:id]}"
+    invoice_item = InvoiceItem.find(params[:invoice_item])
+    invoice_item.update(status: params[:status])
+    redirect_to "/merchants/#{merchant.id}/invoices/#{invoice.id}"
   end
 end

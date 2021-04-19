@@ -16,7 +16,8 @@
         <p>Item quantity:<%= invoice_item.quantity%><p>
         <p>Item price:<%= invoice_item.unit_price%><p>
         <p>Item status:<%= invoice_item.status%><p>
-        <%= form_with url: " /merchants/#{@merchant.id}/invoices/#{@invoice.id}", method: :patch, local: true do |f| %>
+        <%= form_with url: "/merchants/#{@merchant.id}/invoices/#{@invoice.id}", method: :patch, local: true do |f| %>
+        <%= f.hidden_field :invoice_item, :value => invoice_item.id %>
         <%= f.select :status, ["pending", "packaged", "shipped"], :selected => invoice_item.status%>
         <%= f.submit %>
         <% end %><p>

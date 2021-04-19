@@ -66,7 +66,6 @@ RSpec.describe 'the admin invoice show' do
   it 'has a drop down selector for invoice status and allows user to update the value ' do
     invoice= create :invoice, status: 2
     visit "/admin/invoices/#{invoice.id}"
-    save_and_open_page
 
     within "#invoice-#{invoice.id}" do
       expect(page).to have_field('status', with: "#{invoice.status}")

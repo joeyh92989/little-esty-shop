@@ -70,11 +70,11 @@ RSpec.describe 'the merchant invoice show' do
     invoice_items = merchant_invoices.first.invoice_items
 
 
-    visit "/merchants/#{@merchant.id}/invoices/#{@merchant_invoices.first.id})"
+    visit "/merchants/#{merchant.id}/invoices/#{merchant_invoices.first.id})"
 
     
     within "#invoice-item-#{invoice_items[0].id}" do
-      expect(page).to have_field('status', with: "#{invoice.status}")
+      expect(page).to have_field('status', with: "#{invoice_items[0].status}")
       page.select 'packaged', from: 'status'
       click_button 'Save'
     end
