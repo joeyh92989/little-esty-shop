@@ -27,12 +27,12 @@ RSpec.describe 'merchant dashboard' do
     expect(page).to have_content(@invoice[3].id)
   end
 
-  # it "show link to merchant show page" do
-  #   visit "/merchants/#{@merchant_1.id}/dashboard"
-  #   click_link("Invoice ##{@invoice_2.id}")
-  #   expect(current_path).to eq("Invoice ##{@invoice_2.id}")
-  #   expect(page).to have_content(@invoice_2.date)
-  # end
+  it "show link to merchant show page" do
+    visit "/merchants/#{@merchant_1.id}/dashboard"
+    click_link("Invoice ##{@invoice_2.id}")
+    expect(current_path).to eq("Invoice ##{@invoice_2.id}")
+    expect(page).to have_content(@invoice_2.date)
+  end
 
   it "shows merchant name" do
     visit "/merchants/#{@merchant_1.id}/dashboard"
