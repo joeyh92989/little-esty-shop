@@ -97,7 +97,7 @@ RSpec.describe 'the admin merchants index' do
     expect(current_path).to eq("/admin/merchants/new")
   end
 
-  it "lists the top 5 merchants with their total revenue generated" do
+  it "lists the top 5 merchants with their total revenue generated and top day" do
     visit "/admin/merchants"
 
     within "#top_merchants" do
@@ -107,26 +107,33 @@ RSpec.describe 'the admin merchants index' do
     within "#top_merchant-#{@merchant[0].id}" do
       expect(page).to have_link(@merchant[0].name)
       expect(page).to have_content(@merchant[0].total_revenue)
+      expect(page).to have_content(@merchant[0].top_merchant_best_day.to_time.strftime(' %A, %B %e, %Y'))
+
     end
 
     within "#top_merchant-#{@merchant[1].id}" do
       expect(page).to have_link(@merchant[1].name)
       expect(page).to have_content(@merchant[1].total_revenue)
+      expect(page).to have_content(@merchant[1].top_merchant_best_day.to_time.strftime(' %A, %B %e, %Y'))
+
     end
 
     within "#top_merchant-#{@merchant[2].id}" do
       expect(page).to have_link(@merchant[2].name)
       expect(page).to have_content(@merchant[2].total_revenue)
+      expect(page).to have_content(@merchant[2].top_merchant_best_day.to_time.strftime(' %A, %B %e, %Y'))
     end
 
     within "#top_merchant-#{@merchant[3].id}" do
       expect(page).to have_link(@merchant[3].name)
       expect(page).to have_content(@merchant[3].total_revenue)
+      expect(page).to have_content(@merchant[3].top_merchant_best_day.to_time.strftime(' %A, %B %e, %Y'))
     end
 
     within "#top_merchant-#{@merchant[4].id}" do
       expect(page).to have_link(@merchant[4].name)
       expect(page).to have_content(@merchant[4].total_revenue)
+      expect(page).to have_content(@merchant[4].top_merchant_best_day.to_time.strftime(' %A, %B %e, %Y'))
     end
   end
 end
