@@ -5,4 +5,11 @@ class Item < ApplicationRecord
 
   validates :name, :description, :unit_price, :merchant_id, presence: true
 
+  def self.enabled
+    where(status: "enabled")
+  end
+
+  def self.disabled
+    where(status: "disabled")
+  end
 end
