@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   def index
+    
     @merchant = Merchant.find(item_params[:merchant_id])
     @enabled_items = Merchant.find(item_params[:merchant_id]).items.enabled
     @disabled_items = Merchant.find(item_params[:merchant_id]).items.disabled
