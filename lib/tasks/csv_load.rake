@@ -1,4 +1,4 @@
-require 'CSV'
+require 'csv'
 require 'benchmark'
 
 namespace :csv_load do
