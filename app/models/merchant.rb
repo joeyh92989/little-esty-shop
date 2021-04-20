@@ -25,6 +25,10 @@ class Merchant < ApplicationRecord
     where(status: "disabled")
   end
 
+  def top_5_by_transactions
+
+  end
+
   def total_revenue
     invoice_items.group(:id)
     .sum('invoice_items.quantity * invoice_items.unit_price')
