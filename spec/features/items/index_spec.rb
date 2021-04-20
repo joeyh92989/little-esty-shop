@@ -33,25 +33,25 @@ RSpec.describe 'merchant items index' do
     invoice = create_list :invoice, 6
     transactions_1= create_list :transaction, 10, result: 1, invoice: invoice.first
     transactions_2= create :transaction, result: 0, invoice: invoice.second
-    transactions_6= create :transaction, invoice: invoice.third
-    transactions_3= create :transaction,  invoice: invoice.fourth
-    transactions_4= create :transaction,  invoice: invoice.fifth
-    transactions_5= create :transaction,  invoice: invoice[5]
+    transactions_6= create :transaction, result: 0, invoice: invoice.third
+    transactions_3= create :transaction,result: 0,  invoice: invoice.fourth
+    transactions_4= create :transaction, result: 0,  invoice: invoice.fifth
+    transactions_5= create :transaction, result: 0, invoice: invoice[5]
     invoice_item_2 = create :invoice_item, item: item_2, invoice: invoice.first
-    invoice_item_3 = create :invoice_item, item: item_3, unit_price: 9999999, quantity: 9999999, invoice: invoice.second
+    invoice_item_3 = create :invoice_item, item: item_3, unit_price: 500, quantity: 500, invoice: invoice.second
     invoice_item_1 = create :invoice_item, item: item_1, invoice: invoice.third
     invoice_item_4 = create :invoice_item, item: item_4, invoice: invoice.fourth
     invoice_item_5 = create :invoice_item, item: item_5, invoice: invoice.fifth
     invoice_item_6 = create :invoice_item, item: item_6, invoice: invoice[5]
 
-    binding.pry
-    visit "merchants/#{@merchant[0].id}/items"
-    save_and_open_page
-    expect(page).to_not have_content(item_2.total_rev)
-    expect(item_3.name).to appear_before(item_1.name)
+
+    visit "merchants/#{merchant.id}/items"
     
+    # expect(page).to_not have_content(item_2.name)
+    # expect(item_3.name).to appear_before(item_1.name)
+
     within "#item-#{item_1.id}" do
-      expect(page).to have_link("#{item_1.name}")
+      expect(page).to have_link(item_1.name)
       expect(page).to have_content(item_1.total_rev)
     end
     within "#item-#{item_3.id}" do

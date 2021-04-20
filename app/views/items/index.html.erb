@@ -3,7 +3,7 @@
   <p> <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %> </p>
   <% end %>
 <h2>Top 5 items </h2>
-  <% @merchant.items.top_5.each do |item| %>
+  <% @merchant.top_5_items.each do |item| %>
       <div id="item-<%=item.id %>">
         <p> <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %> </p>
         <p>Total revenue: <%=item.total_rev%>
