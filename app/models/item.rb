@@ -7,10 +7,11 @@ class Item < ApplicationRecord
   validates :name, :description, :unit_price, :merchant_id, presence: true
 
   def total_rev
-    
-    invoice_items.joins(invoice: :transactions).where('transactions.result = 0').sum('invoice_items.unit_price * invoice_items.quantity')
+    invoice_items.joins(invoice: :transactions)
+    .where('transactions.result = 0')
+    .sum('invoice_items.unit_price * invoice_items.quantity')
   end
-end
+
   def self.enabled
     where(status: "enabled")
   end
