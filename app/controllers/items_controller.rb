@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-  
+    @item = Item.find(item_params[:id])
   end
 
   private
