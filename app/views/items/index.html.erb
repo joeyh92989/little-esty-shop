@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <h2> Items: </h2>
   <% @merchant.items.each do |item| %>
   <p> <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %> </p>
@@ -10,7 +10,7 @@
         <p>Total revenue: <%=item.total_rev%>
       </div>
   <% end %>
-=======
+
 <p> <%= link_to "Create New Item", new_merchant_item_path %> </p>
 
   <div id="enabled_items">
@@ -35,4 +35,4 @@
       <% end %>
     </h2>
   </div>
->>>>>>> main
+
