@@ -9,7 +9,7 @@ RSpec.describe 'merchant items show' do
     @item_3 = create :item, merchant: @merchant[2]
   end
 
-  it "clicks an item and redirects to show" do
+  it "displays item attributes" do
     visit "/merchants/#{@merchant[0].id}/items/#{@item_1.id}"
 
     expect(page).to have_content("Name: #{@item_1.name}")
@@ -17,5 +17,14 @@ RSpec.describe 'merchant items show' do
     expect(page).to have_content("Current Selling Price: #{@item_1.unit_price}")
 
     expect(page).to_not have_content(@item_2.name)
+  end
+
+  it "clicks update link and redirects to edit page" do
+    visit "/merchants/#{@merchant[0].id}/items/#{@item_1.id}"
+
+    expect(page).to have_link("Update")
+    click_link "Update"
+
+    expect(page).to have_current_path("/merchants/#{@merchant[0].id}/items/#{@item_1.id}/edit")
   end
 end

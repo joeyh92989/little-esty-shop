@@ -11,3 +11,11 @@ class Item < ApplicationRecord
     invoice_items.joins(invoice: :transactions).where('transactions.result = 0').sum('invoice_items.unit_price * invoice_items.quantity')
   end
 end
+  def self.enabled
+    where(status: "enabled")
+  end
+
+  def self.disabled
+    where(status: "disabled")
+  end
+end
