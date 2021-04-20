@@ -10,6 +10,22 @@ class ItemsController < ApplicationController
     @merchant = Merchant.find(item_params[:merchant_id])
   end
 
+  def new
+    @merchant = Merchant.find(item_params[:merchant_id])
+  end
+
+  def create
+    item = Item.new(item_params)
+    merchant = Merchant.find(item_params[:merchant_id])
+
+    if item.save
+      redirect_to "/merchants/#{merchant.id}/items"
+    else
+      redirect_to "/merchants/#{merchant.id}/items/new"
+      flash[:alert] = "Error: #{error_message(item.errors)}"
+    end
+  end
+
   def edit
     @item = Item.find(item_params[:id])
     @merchant = Merchant.find(item_params[:merchant_id])

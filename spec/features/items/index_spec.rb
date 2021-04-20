@@ -68,4 +68,13 @@ RSpec.describe 'merchant items index' do
       expect(page).to have_content("has been disabled!")
     end
   end
+
+  it "clicks create link and redirects to create page" do
+    visit "/merchants/#{@merchant[0].id}/items"
+
+    expect(page).to have_link('Create New Item')
+    click_link 'Create New Item'
+
+    expect(current_path).to eq("/merchants/#{@merchant[0].id}/items/new")
+  end
 end
