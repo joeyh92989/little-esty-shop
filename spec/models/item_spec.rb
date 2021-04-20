@@ -40,4 +40,14 @@ RSpec.describe Item, type: :model do
       expect(Item.top_5).to contain_exactly(@item_3, @item_1, @item_4, @item_5, @item_6)
     end
   end
+  describe 'instance methods' do
+    it 'returns items total revenue' do
+      item = create :item
+      invoice = create :invoice
+      transactions= create_list :transaction, 10, result: 1, invoice: invoice
+      invoice_item = create :invoice_item, unit_price: 10, quantity: 10, item: item, invoice: invoice
+
+      expect(item.total_rev).to eq(100) 
+    end
+  end
 end
