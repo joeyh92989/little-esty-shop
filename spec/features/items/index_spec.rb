@@ -24,7 +24,7 @@ RSpec.describe 'merchant items index' do
     click_link(@item_1.name)
     expect(page).to have_current_path("/merchants/#{@merchant[0].id}/items/#{@item_1.id}")
   end
-<<<<<<< HEAD
+
   it 'displys top 5 items with details' do
     merchant = create :merchant
     item_1 = create :item, merchant: merchant
@@ -75,7 +75,7 @@ RSpec.describe 'merchant items index' do
     end
   end
 end
-=======
+
 
   it 'displays enable/disable buttons' do
     visit "/merchants/#{@merchant[0].id}/items"
@@ -130,4 +130,4 @@ end
     expect(current_path).to eq("/merchants/#{@merchant[0].id}/items/new")
   end
 end
->>>>>>> main
+
