@@ -1,8 +1,10 @@
+<p> <%= link_to "Create New Item", new_merchant_item_path %> </p>
+
   <div id="enabled_items">
     <h1> Enabled Items: </h1>
     <h2> <% @enabled_items.each do |item| %>
       <div id="item-<%= item.id %>">
-        <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %> <%= item.status %>
+        <%= link_to "#{item.name}:", merchant_item_path(@merchant, item) %> <%= item.status %>
         <%= button_to "disable", {controller: "items", action: "update_status", id: "#{item.id}", :status => 'disable'} %>
       </div>
       <% end %>
@@ -14,7 +16,7 @@
     <h1> Disabled Items: </h1>
     <h2> <% @disabled_items.each do |item| %>
       <div id="item-<%= item.id %>">
-        <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %> <%= item.status %>
+        <%= link_to "#{item.name}:", merchant_item_path(@merchant, item) %> <%= item.status %>
         <%= button_to "enable", {controller: "items", action: "update_status", id: "#{item.id}", :status => 'enable'} %>
       </div>
       <% end %>
