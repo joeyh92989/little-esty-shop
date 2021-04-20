@@ -53,28 +53,28 @@ RSpec.describe 'merchant items index' do
     # expect(page).to_not have_content(item_2.name)
     # expect(item_3.name).to appear_before(item_1.name)
 
-    within "#item-#{item_1.id}" do
+    within "#item-top-#{item_1.id}" do
       expect(page).to have_link(item_1.name)
       expect(page).to have_content(item_1.total_rev)
     end
-    within "#item-#{item_3.id}" do
+    within "#item-top-#{item_3.id}" do
       expect(page).to have_link("#{item_3.name}")
       expect(page).to have_content(item_3.total_rev)
     end
-    within "#item-#{item_4.id}" do
+    within "#item-top-#{item_4.id}" do
       expect(page).to have_link("#{item_4.name}")
       expect(page).to have_content(item_4.total_rev)
     end
-    within "#item-#{item_5.id}" do
+    within "#item-top-#{item_5.id}" do
       expect(page).to have_link("#{item_5.name}")
       expect(page).to have_content(item_5.total_rev)
     end
-    within "#item-#{item_6.id}" do
+    within "#item-top-#{item_6.id}" do
       expect(page).to have_link("#{item_6.name}")
       expect(page).to have_content(item_6.total_rev)
     end
   end
-end
+
 
 
   it 'displays enable/disable buttons' do

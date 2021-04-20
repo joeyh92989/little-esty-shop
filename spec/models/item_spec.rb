@@ -50,5 +50,14 @@ RSpec.describe Item, type: :model do
 
       expect(item.total_rev).to eq(100) 
     end
+    # it 'returns the top selling date ' do
+    #   item = create :item
+    #   invoice = create :invoice
+    #   create :transaction, result: 0, invoice: invoice
+    #   create :transaction, result: 1, invoice: invoice
+    #   invoice_item = create :invoice_item, unit_price: 10, quantity: 10, item: item, invoice: invoice
+      
+    #   expect(item.total_rev).to eq(100) 
+    # end
   end
 end
