@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   def index
+    
     @merchant = Merchant.find(item_params[:merchant_id])
+    binding.pry
   end
 
   def show
