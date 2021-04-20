@@ -2,4 +2,28 @@
 
 
 <%= link_to 'Items', "/merchants/#{@merchant.id}/items" %><br/>
-<%= link_to 'Invoices', "/merchants/#{@merchant.id}/invoices" %>
+<%= link_to 'Invoices', "/merchants/#{@merchant.id}/invoices" %><br/><br/>
+
+
+<p>________________________________________</p>
+<h3>Favorite Customers</h3><br/><br/>
+
+<% @top_customers.each do |customer| %>
+  <section id="customer-<%= customer.id %>">
+    <ol>
+      <p><%= customer.first_name %> <%= customer.last_name %> - <%= customer.transactions.count %> - purchases </p>
+    </ol>
+  </section>
+<% end %><br/>
+
+
+<p>________________________________________</p>
+<h3>Items Ready to Ship</h3>
+<section>
+  <ol>
+
+  </ol>
+</section>
+
+<%=  %>
+<%  %>
