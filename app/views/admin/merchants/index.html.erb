@@ -2,7 +2,7 @@
 
 <div id="top_merchants">
   <h2> Top 5 Merchants: </h2>
-  <% @top_5_by_revenue.each do |merchant| %>
+  <% @top_5_merchants_by_revenue.each do |merchant| %>
   <div id="top_merchant-<%= merchant.id %>">
     <h2> <%= link_to "#{merchant.name}:", {controller: "admin/merchants", action: "show", id: "#{merchant.id}"} %> $<%= merchant.total_revenue %>
     <br>
