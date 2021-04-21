@@ -53,28 +53,28 @@ RSpec.describe 'merchant items index' do
     # expect(page).to_not have_content(item_2.name)
     # expect(item_3.name).to appear_before(item_1.name)
 
-    within "#item-#{item_1.id}" do
+    within "#item-top-#{item_1.id}" do
       expect(page).to have_link(item_1.name)
       expect(page).to have_content(item_1.total_rev)
     end
-    within "#item-#{item_3.id}" do
+    within "#item-top-#{item_3.id}" do
       expect(page).to have_link("#{item_3.name}")
       expect(page).to have_content(item_3.total_rev)
     end
-    within "#item-#{item_4.id}" do
+    within "#item-top-#{item_4.id}" do
       expect(page).to have_link("#{item_4.name}")
       expect(page).to have_content(item_4.total_rev)
     end
-    within "#item-#{item_5.id}" do
+    within "#item-top-#{item_5.id}" do
       expect(page).to have_link("#{item_5.name}")
       expect(page).to have_content(item_5.total_rev)
     end
-    within "#item-#{item_6.id}" do
+    within "#item-top-#{item_6.id}" do
       expect(page).to have_link("#{item_6.name}")
       expect(page).to have_content(item_6.total_rev)
     end
   end
-end
+
 
 
   it 'displays enable/disable buttons' do
@@ -128,6 +128,28 @@ end
     click_link 'Create New Item'
 
     expect(current_path).to eq("/merchants/#{@merchant[0].id}/items/new")
+  end
+  it "displays the items top 5 day" do
+    
+    merchant = create :merchant
+    item = create :item, merchant: merchant
+    invoice_1 = create :invoice, created_at: Time.new(2000, 1, 30)
+    invoice_2 = create :invoice, created_at: Time.new(2000, 1, 30)
+    invoice_3 = create :invoice, created_at: Time.new(2000, 1, 30)
+    invoice_4 = create :invoice, created_at: Time.new(2000, 3, 30)
+    invoice_5 = create :invoice, created_at: Time.new(2000, 3, 30)
+    invoice_6 = create :invoice, created_at: Time.new(2000, 2, 30)
+    invoice_items_1 = create :invoice_item, item: item, invoice: invoice_1
+    invoice_items_2 = create :invoice_item, item: item, invoice: invoice_2
+    invoice_items_3 = create :invoice_item, item: item, invoice: invoice_3
+    invoice_items_4 = create :invoice_item, item: item, invoice: invoice_4
+    invoice_items_5 = create :invoice_item, item: item, invoice: invoice_5
+    invoice_items_6 = create :invoice_item, item: item, invoice: invoice_6
+    transactions= create :transaction, invoice: invoice_1, result: 0
+    visit "/merchants/#{merchant.id}/items"
+    within "#item-top-#{item.id}" do
+      expect(page).to have_content(item.top_day)
+    end
   end
 end
 

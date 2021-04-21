@@ -15,6 +15,7 @@ RSpec.describe Merchant, type: :model do
   end
 
   describe 'instance methods' do
+    # redo the test to include specific arguments 
     it 'returns top 5 items' do
       merchant = create :merchant
       merchant_2 = create :merchant, status: "enabled"

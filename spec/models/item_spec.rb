@@ -35,11 +35,7 @@ RSpec.describe Item, type: :model do
     @invoice_item_6 = create :invoice_item, item: @item_6, invoice: @invoice[5]
     
   end
-  describe '::class methods' do
-    it 'returns top 5 items' do
-      expect(Item.top_5).to contain_exactly(@item_3, @item_1, @item_4, @item_5, @item_6)
-    end
-  end
+  
   describe 'instance methods' do
     it 'returns items total revenue' do
       item = create :item
@@ -49,6 +45,26 @@ RSpec.describe Item, type: :model do
       invoice_item = create :invoice_item, unit_price: 10, quantity: 10, item: item, invoice: invoice
 
       expect(item.total_rev).to eq(100) 
+    end
+    it 'returns the top selling date ' do
+      item = create :item
+
+      
+      invoice_1 = create :invoice, created_at: Time.new(2000, 1, 30)
+      invoice_2 = create :invoice, created_at: Time.new(2000, 1, 30)
+      invoice_3 = create :invoice, created_at: Time.new(2000, 1, 30)
+      invoice_4 = create :invoice, created_at: Time.new(2000, 3, 30)
+      invoice_5 = create :invoice, created_at: Time.new(2000, 3, 30)
+      invoice_6 = create :invoice, created_at: Time.new(2000, 2, 30)
+      invoice_items_1 = create :invoice_item, item: item, invoice: invoice_1
+      invoice_items_2 = create :invoice_item, item: item, invoice: invoice_2
+      invoice_items_3 = create :invoice_item, item: item, invoice: invoice_3
+      invoice_items_4 = create :invoice_item, item: item, invoice: invoice_4
+      invoice_items_5 = create :invoice_item, item: item, invoice: invoice_5
+      invoice_items_6 = create :invoice_item, item: item, invoice: invoice_6
+      transactions= create :transaction, result: 0, invoice: invoice_1
+
+      expect(item.top_day).to eq(invoice_1.created_at) 
     end
   end
 end

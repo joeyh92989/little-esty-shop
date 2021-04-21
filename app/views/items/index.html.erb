@@ -5,9 +5,10 @@
   <% end %>
 <h2>Top 5 items </h2>
   <% @merchant.top_5_items.each do |item| %>
-      <div id="item-<%=item.id %>">
+      <div id="item-top-<%=item.id %>">
         <p> <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %> </p>
         <p>Total revenue: <%=item.total_rev%>
+        <p>Total revenue: <%=item.top_day%>
       </div>
   <% end %>
 
