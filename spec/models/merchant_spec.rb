@@ -37,6 +37,7 @@ RSpec.describe Merchant, type: :model do
     it { should validate_presence_of(:status) }
   end
   describe 'instance methods' do
+    # redo the test to include specific arguments 
     it 'returns top 5 items' do
       
       expect(@merchant.top_5_items).to contain_exactly(@item_3, @item_1, @item_4, @item_5, @item_6)

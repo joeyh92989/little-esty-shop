@@ -50,14 +50,25 @@ RSpec.describe Item, type: :model do
 
       expect(item.total_rev).to eq(100) 
     end
-    # it 'returns the top selling date ' do
-    #   item = create :item
-    #   invoice = create :invoice
-    #   create :transaction, result: 0, invoice: invoice
-    #   create :transaction, result: 1, invoice: invoice
-    #   invoice_item = create :invoice_item, unit_price: 10, quantity: 10, item: item, invoice: invoice
+    it 'returns the top selling date ' do
+      item = create :item
+
       
-    #   expect(item.total_rev).to eq(100) 
-    # end
+      invoice_1 = create :invoice, created_at: Time.new(2000, 1, 30)
+      invoice_2 = create :invoice, created_at: Time.new(2000, 1, 30)
+      invoice_3 = create :invoice, created_at: Time.new(2000, 1, 30)
+      invoice_4 = create :invoice, created_at: Time.new(2000, 3, 30)
+      invoice_5 = create :invoice, created_at: Time.new(2000, 3, 30)
+      invoice_6 = create :invoice, created_at: Time.new(2000, 2, 30)
+      invoice_items_1 = create :invoice_item, item: item, invoice: invoice_1
+      invoice_items_2 = create :invoice_item, item: item, invoice: invoice_2
+      invoice_items_3 = create :invoice_item, item: item, invoice: invoice_3
+      invoice_items_4 = create :invoice_item, item: item, invoice: invoice_4
+      invoice_items_5 = create :invoice_item, item: item, invoice: invoice_5
+      invoice_items_6 = create :invoice_item, item: item, invoice: invoice_6
+
+
+      expect(item.top_day).to eq(invoice_1.created_at) 
+    end
   end
 end
