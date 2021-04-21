@@ -5,7 +5,7 @@ class Invoice < ApplicationRecord
   has_many :items, through: :invoice_items
 
   enum status: [ :"completed", :"cancelled", :"in progress" ]
-  
+
   validates :status, presence: true
 
   def self.unshipped
@@ -18,5 +18,9 @@ class Invoice < ApplicationRecord
 
   def total_revenue
     invoice_items.sum('invoice_items.unit_price * invoice_items.quantity')
+  end
+
+  def date
+    created_at.strftime("%A, %B, %d, %Y")
   end
 end
