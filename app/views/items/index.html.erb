@@ -8,6 +8,7 @@
       <div id="item-top-<%=item.id %>">
         <p> <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %> </p>
         <p>Total revenue: <%=item.total_rev%>
+        <p>Total revenue: <%=item.top_day%>
       </div>
   <% end %>
 

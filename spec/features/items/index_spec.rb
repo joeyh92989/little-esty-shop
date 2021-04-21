@@ -129,5 +129,27 @@ RSpec.describe 'merchant items index' do
 
     expect(current_path).to eq("/merchants/#{@merchant[0].id}/items/new")
   end
+  it "displays the items top 5 day" do
+    
+    merchant = create :merchant
+    item = create :item, merchant: merchant
+    invoice_1 = create :invoice, created_at: Time.new(2000, 1, 30)
+    invoice_2 = create :invoice, created_at: Time.new(2000, 1, 30)
+    invoice_3 = create :invoice, created_at: Time.new(2000, 1, 30)
+    invoice_4 = create :invoice, created_at: Time.new(2000, 3, 30)
+    invoice_5 = create :invoice, created_at: Time.new(2000, 3, 30)
+    invoice_6 = create :invoice, created_at: Time.new(2000, 2, 30)
+    invoice_items_1 = create :invoice_item, item: item, invoice: invoice_1
+    invoice_items_2 = create :invoice_item, item: item, invoice: invoice_2
+    invoice_items_3 = create :invoice_item, item: item, invoice: invoice_3
+    invoice_items_4 = create :invoice_item, item: item, invoice: invoice_4
+    invoice_items_5 = create :invoice_item, item: item, invoice: invoice_5
+    invoice_items_6 = create :invoice_item, item: item, invoice: invoice_6
+    transactions= create :transaction, invoice: invoice_1, result: 0
+    visit "/merchants/#{merchant.id}/items"
+    within "#item-top-#{item.id}" do
+      expect(page).to have_content(item.top_day)
+    end
+  end
 end
 
