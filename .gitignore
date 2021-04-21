@@ -29,3 +29,4 @@
 
 vendor
 coverage
+config/application.yml
