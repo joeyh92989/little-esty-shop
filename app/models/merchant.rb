@@ -8,7 +8,7 @@ class Merchant < ApplicationRecord
   validates :name, presence: true
   validates :status, presence: true
 
-  def self.top_5_by_revenue
+  def self.top_5_merchants_by_revenue
     joins(:transactions, :invoice_items)
     .select('merchants.*, sum(invoice_items.quantity * invoice_items.unit_price) as total_revenue')
     .group(:id)
@@ -55,5 +55,8 @@ class Merchant < ApplicationRecord
     .order('total_revenue')
     .first
     .created_at
+  end
+  def top_5_items
+     items.select(:name,:id).joins(:invoice_items).joins(invoices: :transactions).where('transactions.result = 0').group(:id).select('SUM(invoice_items.unit_price * invoice_items.quantity) as tot').order('tot').limit(5)
   end
 end
