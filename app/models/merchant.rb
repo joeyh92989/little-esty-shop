@@ -25,6 +25,22 @@ class Merchant < ApplicationRecord
     where(status: "disabled")
   end
 
+  def top_5_by_transactions
+    customers.joins(:transactions)
+    .where(transactions: {result: 0})
+    .group('customers.id')
+    .select('customers.*, count(*) AS successful_transactions')
+    .order('successful_transactions DESC')
+    .limit(5)
+  end
+
+  def items_ready_to_ship
+    invoice_items.joins(:invoice)
+    .where('invoice_items.status = 1')
+    .order('invoices.created_at')
+    .limit(4)
+  end
+
   def total_revenue
     invoice_items.group(:id)
     .sum('invoice_items.quantity * invoice_items.unit_price')
