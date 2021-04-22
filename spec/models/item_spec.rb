@@ -15,7 +15,7 @@ RSpec.describe Item, type: :model do
   end
   before(:each) do
     @item_1 = create :item
-    @item_2 = create :item
+    @item_2 = create :item, status: "enabled"
     @item_3 = create :item
     @item_4 = create :item
     @item_5 = create :item
@@ -33,9 +33,8 @@ RSpec.describe Item, type: :model do
     @invoice_item_4 = create :invoice_item, item: @item_4, invoice: @invoice.fourth
     @invoice_item_5 = create :invoice_item, item: @item_5, invoice: @invoice.fifth
     @invoice_item_6 = create :invoice_item, item: @item_6, invoice: @invoice[5]
-    
   end
-  
+
   describe 'instance methods' do
     it 'returns items total revenue' do
       item = create :item
@@ -44,12 +43,11 @@ RSpec.describe Item, type: :model do
       create :transaction, result: 1, invoice: invoice
       invoice_item = create :invoice_item, unit_price: 10, quantity: 10, item: item, invoice: invoice
 
-      expect(item.total_rev).to eq(100) 
+      expect(item.total_rev).to eq(100)
     end
     it 'returns the top selling date ' do
       item = create :item
 
-      
       invoice_1 = create :invoice, created_at: Time.new(2000, 1, 30)
       invoice_2 = create :invoice, created_at: Time.new(2000, 1, 30)
       invoice_3 = create :invoice, created_at: Time.new(2000, 1, 30)
@@ -64,7 +62,22 @@ RSpec.describe Item, type: :model do
       invoice_items_6 = create :invoice_item, item: item, invoice: invoice_6
       transactions= create :transaction, result: 0, invoice: invoice_1
 
-      expect(item.top_day).to eq(invoice_1.created_at) 
+      expect(item.top_day).to eq(invoice_1.created_at)
     end
   end
+
+  describe 'class methods' do
+    describe '#enabled' do
+      it 'returns enabled items' do
+        expect(Item.enabled).to contain_exactly(@item_2)
+      end
+    end
+
+    describe '#disabled' do
+      it 'returns disabled items' do
+        expect(Item.disabled).to contain_exactly(@item_1, @item_3, @item_4, @item_5, @item_6)
+      end
+    end
+  end
+
 end
