@@ -42,14 +42,14 @@ group :development, :test do
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'launchy'
-  gem 'orderly'
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'orderly'
   gem "nyan-cat-formatter"
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
-gem 'faker'
-gem 'factory_bot_rails'
+
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -60,6 +60,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
 end
+
+# Gems for API access/use
 gem 'faraday'
 gem 'json'
 gem "figaro"

@@ -201,8 +201,22 @@ RSpec.describe Merchant, type: :model do
         invoice_item_4 = create :invoice_item, unit_price: 600, quantity: 2, item: item_4, invoice: invoice.fourth
         invoice_item_5 = create :invoice_item, unit_price: 200, quantity: 5, item: item_5, invoice: invoice.fifth
         invoice_item_6 = create :invoice_item, unit_price: 10, quantity: 5, item: item_6, invoice: invoice[5]
-
-        expect(merchant.top_5_items).to contain_exactly(item_3, item_1, item_4, item_5, item_6)
+        
+        expected_ids = [item_3, item_1, item_4, item_5, item_6].map do |item|
+          item.id
+        end
+        expected_names = [item_3, item_1, item_4, item_5, item_6].map do |item|
+          item.name
+        end
+        actual_ids = merchant.top_5_items.map do |item|
+          item.id
+        end
+        actual_names = merchant.top_5_items.map do |item|
+          item.name
+        end
+        # expect(merchant.top_5_items).to contain_exactly(item_3, item_1, item_4, item_5, item_6)
+        expect(actual_ids).to eq(expected_ids)
+        expect(actual_names).to eq(expected_names)
       end
     end
 

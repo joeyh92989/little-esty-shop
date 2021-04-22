@@ -50,9 +50,6 @@ RSpec.describe 'merchant items index' do
 
     visit "merchants/#{merchant.id}/items"
     
-    # expect(page).to_not have_content(item_2.name)
-    # expect(item_3.name).to appear_before(item_1.name)
-
     within "#item-top-#{item_1.id}" do
       expect(page).to have_link(item_1.name)
       expect(page).to have_content(item_1.total_rev)
