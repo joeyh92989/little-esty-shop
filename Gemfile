@@ -46,6 +46,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'orderly'
+  gem "nyan-cat-formatter"
 end
 gem 'faker'
 gem 'factory_bot_rails'
