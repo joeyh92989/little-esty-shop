@@ -57,6 +57,13 @@ class Merchant < ApplicationRecord
     .created_at
   end
   def top_5_items
-     items.select(:name,:id).joins(:invoice_items).joins(invoices: :transactions).where('transactions.result = 0').group(:id).select('SUM(invoice_items.unit_price * invoice_items.quantity) as tot').order('tot').limit(5)
+     items.select(:name,:id)
+     .joins(:invoice_items)
+     .joins(invoices: :transactions)
+     .where('transactions.result = 0')
+     .group(:id)
+     .select('SUM(invoice_items.unit_price * invoice_items.quantity) as tot')
+     .order('tot')
+     .limit(5)
   end
 end

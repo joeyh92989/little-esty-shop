@@ -20,6 +20,11 @@ class Item < ApplicationRecord
     where(status: "disabled")
   end
   def top_day
-    invoices.select('invoices.created_at').group('invoices.created_at').order(count: :desc).first.created_at
+    invoices.
+    select('invoices.created_at')
+    .group('invoices.created_at')
+    .order(count: :desc)
+    .first
+    .created_at
   end
 end
