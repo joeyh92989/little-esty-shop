@@ -79,10 +79,8 @@ RSpec.describe 'the admin application index' do
 
     within "#invoice-#{@invoice_2[1].id}" do
       expect(page).to have_content(@invoice_2[1].id)
-      
-    end
-    within "#invoice-#{@invoice_2[2].id}" do
-      expect(page).to have_content(@invoice_2[2].id)
+      click_link "Invoice-#{@invoice_2[1].id}"
+      expect(current_path).to eq("/admin/invoices/#{@invoice_2[1].id}")
     end
   end
 end
