@@ -1,38 +1,137 @@
+![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
+
 # Little Esty Shop
+> Additional information or tagline
 
-## Background and Description
+This repo is an interactive online imitation e-commerce website that manages inventory and handles customer invoices.
 
-"Little Esty Shop" is a group project that requires students to build a fictitious e-commerce platform where merchants and admins can manage inventory and fulfill customer invoices.
+## Installing / Getting started
 
-## Learning Goals
-- Practice designing a normalized database schema and defining model relationships
-- Utilize advanced routing techniques including namespacing to organize and group like functionality together.
-- Utilize advanced active record techniques to perform complex database queries
-- Practice consuming a public API while utilizing POROs as a way to apply OOP principles to organize code
+In order to run this repo properly please sue Ruby 2.5.3. Also, please be sure to do the following.
+   - Fork this repo
+   - Clone down your fork
+   - In your terminal run the following on the command line
 
-## Requirements
-- must use Rails 5.2.x
-- must use PostgreSQL
-- all code must be tested via feature tests and model tests, respectively
-- must use GitHub branching, team code reviews via GitHub comments, and github projects to track progress on user stories
-- must include a thorough README to describe the project
-- must deploy completed code to Heroku
+```shell
+bundle
+bundle update
+rails db:create
+bundle exec rspec
+rails s
+```
 
-## Setup
+The code above installs all gems in the Gemfile and updates the Gemfile.lock. Also, it will create your database, run existing tests, and start your local server.
 
-This project requires Ruby 2.5.3.
+### Initial Configuration
 
-* Fork this repository
-* Clone your fork
-* From the command line, install gems and set up your DB:
-    * `bundle`
-    * `rails db:create`
-* Run the test suite with `bundle exec rspec`.
-* Run your development server with `rails s` to see the app in action.
+Some projects require initial configuration (e.g. access tokens or keys, `npm i`).
+This is the section where you would document those requirements.
 
-## Phases
+## Developing
 
-1. [Database Setup](./doc/db_setup.md)
-1. [User Stories](./doc/user_stories.md)
-1. [Extensions](./doc/extensions.md)
-1. [Evaluation](./doc/evaluation.md)
+Here's a brief intro about what a developer must do in order to start developing
+the project further:
+
+```shell
+git clone https://github.com/joeyh92989/little-esty-shop
+cd little-esty-shop
+atom .
+```
+
+You will want to clone down the repository to your computer locally using git. Then cd into the repo. Last, open the repo in your test editor(atom is what's shown above).
+
+### Building
+
+If your project needs some additional steps for the developer to build the
+project after some code changes, state them here:
+
+```shell
+./configure
+make
+make install
+```
+
+Here again you should state what actually happens when the code above gets
+executed.
+
+### Deploying / Publishing
+
+In case there's some step you have to take that publishes this project to a
+server, this is the right time to state it.
+
+```shell
+packagemanager deploy awesome-project -s server.com -u username -p password
+```
+
+And again you'd need to tell what the previous code actually does.
+
+## Features
+
+What's all the bells and whistles this project can perform?
+* Have an interactive dashboard for your Merchant/Admin
+* Seemless links and buttons to traverse the website and edit/update information
+* If you get really randy, you can even see you top customers and items you sell AND all from one place.
+
+## Configuration
+
+Here you should write what are all of the configurations a user can enter when
+using the project.
+
+#### Argument 1
+Type: `String`  
+Default: `'default value'`
+
+State what an argument does and how you can use it. If needed, you can provide
+an example below.
+
+Example:
+```bash
+awesome-project "Some other value"  # Prints "You're nailing this readme!"
+```
+
+#### Argument 2
+Type: `Number|Boolean`  
+Default: 100
+
+Copy-paste as many of these as you need.
+
+## Contributing
+
+When you publish something open source, one of the greatest motivations is that
+anyone can just jump in and start contributing to your project.
+
+These paragraphs are meant to welcome those kind souls to feel that they are
+needed. You should state something like:
+
+"If you'd like to contribute, please fork the repository and use a feature
+branch. Pull requests are warmly welcome."
+
+If there's anything else the developer needs to know (e.g. the code style
+guide), you should link it here. If there's a lot of things to take into
+consideration, it is common to separate this section to its own file called
+`CONTRIBUTING.md` (or similar). If so, you should say that it exists here.
+
+## Links
+
+Even though this information can be found inside the project on machine-readable
+format like in a .json file, it's good to include a summary of most useful
+links to humans using your project. You can include links like:
+
+- Project homepage: https://your.github.com/awesome-project/
+- Repository: https://github.com/your/awesome-project/
+- Issue tracker: https://github.com/your/awesome-project/issues
+  - In case of sensitive bugs like security vulnerabilities, please contact
+    my@email.com directly instead of using issue tracker. We value your effort
+    to improve the security and privacy of this project!
+- Related projects:
+  - Your other project: https://github.com/your/other-project/
+  - Someone else's project: https://github.com/someones/awesome-project/
+
+
+## Licensing
+
+One really important part: Give your project a proper license. Here you should
+state what the license is and how to find the text version of the license.
+Something like:
+
+"The code in this project is licensed under MIT license."
