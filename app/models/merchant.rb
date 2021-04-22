@@ -63,7 +63,7 @@ class Merchant < ApplicationRecord
      .where('transactions.result = 0')
      .group(:id)
      .select('SUM(invoice_items.unit_price * invoice_items.quantity) as tot')
-     .order('tot')
+     .order('tot DESC')
      .limit(5)
   end
 end
