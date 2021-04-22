@@ -3,7 +3,7 @@
 <h2>Invoices</h2>
   <% @invoices.each do |invoice| %>
       <div id="invoice-<%= invoice.id %>">
-        <%=link_to "Invoice:#{invoice.id}", "admin/invoice/#{invoice.id}" %>
+        <%=link_to "Invoice:#{invoice.id}", "/admin/invoices/#{invoice.id}" %>
         <br>
       </div>
   <% end %>
