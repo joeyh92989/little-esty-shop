@@ -1,4 +1,11 @@
+
 class ApplicationController < ActionController::Base
+  before_action :footer
+
+  def footer
+    @github_service = GitHubService.new
+  end
+
   private
 
   def error_message(errors)
