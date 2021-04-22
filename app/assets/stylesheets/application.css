@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+ .mainbody{
+  background-color: burlywood;
+  
+ }
+ .footer{
+  background-color: rgb(79, 17, 57);
+  
+ }

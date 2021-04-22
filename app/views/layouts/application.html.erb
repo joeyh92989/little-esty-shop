@@ -9,7 +9,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
+<body class="mainbody">
   <% flash.each do |type, msg| %>
   <div>
     <%= msg %>
@@ -18,7 +18,7 @@
   <%= yield %>
 </body>
 
-<foot>
+<foot class="footer">
   <%= render partial: 'shared/footer' %>
 </foot>
 
