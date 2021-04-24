@@ -1,25 +1,27 @@
 <h1>Admin Invoice Show</h1>
-
 <h3>Invoice Details</h3>
-<div id="invoice-<%= @invoice.id %>">
-<p>Invoice ID:<%= @invoice.id%><p>
-<p>Invoice Status:<%=@invoice.status%> 
-<%= form_with url: "/admin/invoices/#{@invoice.id}", method: :patch, local: true do |f| %>
-<%= f.select :status, ["completed", "cancelled", "in progress"], :selected => @invoice.status%>
-<%= f.submit %>
-<% end %><p>
-<p>Invoice Creation Date:<%=@invoice.created_at.to_time.strftime(' %A, %B %e, %Y')%><p>
-<p>Invoice Customer:<%=@invoice.customer.first_name%> <%=@invoice.customer.last_name%><p>
-<p>Invoice Total Revenue:<%= @invoice.total_revenue%><p>
-</div>
-
-<h2>Items on Invoice</h2>
-  <% @invoice.invoice_items.each do |invoice_item| %>
-      <div id="invoice-item-<%= invoice_item.id %>">
-        <p>Name:<%= invoice_item.item.name%><p>
-        <p>Item quantity:<%= invoice_item.quantity%><p>
-        <p>Item price:<%= invoice_item.unit_price%><p>
-        <p>Item status:<%= invoice_item.status%><p>
-        <br>
-      </div>
-  <% end %>
+<section>
+  <div id="invoice-<%= @invoice.id %>">
+    <p>Invoice ID:<%= @invoice.id%>
+      <p>Invoice Status:<%=@invoice.status%>
+        <%= form_with url: "/admin/invoices/#{@invoice.id}", method: :patch, local: true do |f| %>
+          <%= f.select :status, ["completed", "cancelled", "in progress"], :selected => @invoice.status%>
+          <%= f.submit %>
+        <% end %>
+        <p>Invoice Creation Date:<%=@invoice.created_at.to_time.strftime(' %A, %B %e, %Y')%>
+          <p>Invoice Customer:<%=@invoice.customer.first_name%> <%=@invoice.customer.last_name%>
+            <p>Invoice Total Revenue:<%= @invoice.total_revenue%>
+            </div>
+          </section>
+          <section>
+            <h2>Items on Invoice</h2>
+            <% @invoice.invoice_items.each do |invoice_item| %>
+              <div id="invoice-item-<%= invoice_item.id %>">
+                <p>Name:<%= invoice_item.item.name%>
+                  <p>Item quantity:<%= invoice_item.quantity%>
+                    <p>Item price:<%= invoice_item.unit_price%>
+                      <p>Item status:<%= invoice_item.status%>
+                        <br>
+                      </div>
+                    <% end %>
+                  </section>

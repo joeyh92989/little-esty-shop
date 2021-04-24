@@ -1,7 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-
-RSpec.describe 'merchant dashboard' do
+RSpec.describe "merchant dashboard" do
   before :each do
     @merchant_1 = create(:merchant)
     @item = create_list(:item, 6, merchant: @merchant_1)

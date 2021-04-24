@@ -134,7 +134,7 @@ RSpec.describe Merchant, type: :model do
       it 'returns the top 5 merchants by total revenue generated from completed orders' do
         merchant_2 = create :merchant
         merchant_3 = create :merchant
-        merchant_4 = create :merchant
+
 
         customer = create :customer
 
@@ -144,8 +144,7 @@ RSpec.describe Merchant, type: :model do
         item_3a = create :item, merchant: merchant_3
         item_3b = create :item, merchant: merchant_3
 
-        item_4a = create :item, merchant: merchant_4
-        item_4b = create :item, merchant: merchant_4
+
 
 
         # 20 dollars in revenue for merchant 2
@@ -164,17 +163,8 @@ RSpec.describe Merchant, type: :model do
         invoice_3a.invoice_items.create!(item: item_3a, quantity: 10, unit_price: 10, status: 2)
         invoice_3b.invoice_items.create!(item: item_3b, quantity: 10, unit_price: 1, status: 2)
 
-        # 2 dollars in revenue for merchant 4
-        invoice_4a = customer.invoices.create!(status: 0)
-        invoice_4b = customer.invoices.create!(status: 0, created_at: Time.new(2000, 5, 30))
-        invoice_4a.transactions.create!(result: 0, credit_card_number: 12345)
-        invoice_4b.transactions.create!(result: 0, credit_card_number: 12345)
-        invoice_4a.invoice_items.create!(item: item_4a, quantity: 1, unit_price: 1, status: 2)
-        invoice_4b.invoice_items.create!(item: item_4b, quantity: 1, unit_price: 1, status: 2)
-
         expect(merchant_2.top_merchant_best_day).to eq(Time.new(2000, 5, 10))
         expect(merchant_3.top_merchant_best_day).to eq(Time.new(2000, 5, 20))
-        expect(merchant_4.top_merchant_best_day).to eq(Time.new(2000, 5, 30))
       end
     end
 
@@ -220,54 +210,7 @@ RSpec.describe Merchant, type: :model do
         expect(actual_names).to eq(expected_names)
       end
     end
-
-    describe '#top_merchant_best_day' do
-      it 'returns the top 5 merchants by total revenue generated from completed orders' do
-        merchant_2 = create :merchant
-        merchant_3 = create :merchant
-        merchant_4 = create :merchant
-
-        customer = create :customer
-
-        item_2a = create :item, merchant: merchant_2
-        item_2b = create :item, merchant: merchant_2
-
-        item_3a = create :item, merchant: merchant_3
-        item_3b = create :item, merchant: merchant_3
-
-        item_4a = create :item, merchant: merchant_4
-        item_4b = create :item, merchant: merchant_4
-
-
-        # 20 dollars in revenue for merchant 2
-        invoice_2a = customer.invoices.create!(status: 0)
-        invoice_2b = customer.invoices.create!(status: 0, created_at: Time.new(2000, 5, 10))
-        invoice_2b.transactions.create!(result: 0, credit_card_number: 12345)
-        invoice_2b.invoice_items.create!(item: item_2a, quantity: 1, unit_price: 10, status: 2)
-        invoice_2b.invoice_items.create!(item: item_2b, quantity: 10, unit_price: 1, status: 2)
-
-
-        # 110 dollars in revenue for merchant 3
-        invoice_3a = customer.invoices.create!(status: 0)
-        invoice_3b = customer.invoices.create!(status: 0, created_at: Time.new(2000, 5, 20))
-        invoice_3a.transactions.create!(result: 0, credit_card_number: 12345)
-        invoice_3b.transactions.create!(result: 0, credit_card_number: 12345)
-        invoice_3a.invoice_items.create!(item: item_3a, quantity: 10, unit_price: 10, status: 2)
-        invoice_3b.invoice_items.create!(item: item_3b, quantity: 10, unit_price: 1, status: 2)
-
-        # 2 dollars in revenue for merchant 4
-        invoice_4a = customer.invoices.create!(status: 0)
-        invoice_4b = customer.invoices.create!(status: 0, created_at: Time.new(2000, 5, 30))
-        invoice_4a.transactions.create!(result: 0, credit_card_number: 12345)
-        invoice_4b.transactions.create!(result: 0, credit_card_number: 12345)
-        invoice_4a.invoice_items.create!(item: item_4a, quantity: 1, unit_price: 1, status: 2)
-        invoice_4b.invoice_items.create!(item: item_4b, quantity: 1, unit_price: 1, status: 2)
-
-        expect(merchant_2.top_merchant_best_day).to eq(Time.new(2000, 5, 10))
-        expect(merchant_3.top_merchant_best_day).to eq(Time.new(2000, 5, 20))
-        expect(merchant_4.top_merchant_best_day).to eq(Time.new(2000, 5, 30))
-      end
-    end
+  
 
     describe '#top_5_by_transactions'do
       it "shows names of the top 5 customers by successful transactions" do
