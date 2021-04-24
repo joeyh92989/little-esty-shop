@@ -189,23 +189,23 @@ RSpec.describe Merchant, type: :model do
         item_5 = create :item, merchant: merchant
         item_6 = create :item, merchant: merchant
         invoice = create_list :invoice, 6
-        transactions_1= create_list :transaction, 10, result: 1, invoice: invoice.first
-        transactions_2= create_list :transaction, 10, result: 0, invoice: invoice.second
-        transactions_6= create_list :transaction, 10, invoice: invoice.third
-        transactions_3= create_list :transaction, 10, invoice: invoice.fourth
-        transactions_4= create_list :transaction, 10, invoice: invoice.fifth
-        transactions_5= create_list :transaction, 10, invoice: invoice[5]
-        invoice_item_2 = create :invoice_item, unit_price: 500, quantity: 1, item: item_2, invoice: invoice.first
-        invoice_item_3 = create :invoice_item, unit_price: 400, quantity: 2, item: item_3, invoice: invoice.second
-        invoice_item_1 = create :invoice_item, unit_price: 300, quantity: 1, item: item_1, invoice: invoice.third
-        invoice_item_4 = create :invoice_item, unit_price: 600, quantity: 2, item: item_4, invoice: invoice.fourth
-        invoice_item_5 = create :invoice_item, unit_price: 200, quantity: 5, item: item_5, invoice: invoice.fifth
-        invoice_item_6 = create :invoice_item, unit_price: 10, quantity: 5, item: item_6, invoice: invoice[5]
+        transactions_1= create :transaction, result: 0,  invoice: invoice[0]
+        transactions_2= create :transaction, result: 0,  invoice: invoice[1]
+        transactions_6= create :transaction, result: 0,  invoice: invoice[2]
+        transactions_3= create :transaction, result: 0,  invoice: invoice[3]
+        transactions_4= create :transaction, result: 0,  invoice: invoice[4]
+        transactions_5= create :transaction, result: 1,  invoice: invoice[5]
+        invoice_item_2 = create :invoice_item, unit_price: 500, quantity: 1, item: item_1, invoice: invoice[0]
+        invoice_item_3 = create :invoice_item, unit_price: 400, quantity: 1, item: item_2, invoice: invoice[1]
+        invoice_item_1 = create :invoice_item, unit_price: 300, quantity: 1, item: item_3, invoice: invoice[2]
+        invoice_item_4 = create :invoice_item, unit_price: 200, quantity: 1, item: item_4, invoice: invoice[3]
+        invoice_item_5 = create :invoice_item, unit_price: 100, quantity: 1, item: item_5, invoice: invoice[4]
+        invoice_item_6 = create :invoice_item, unit_price: 50 , quantity: 1, item: item_6, invoice: invoice[5]
         
-        expected_ids = [item_3, item_1, item_4, item_5, item_6].map do |item|
+        expected_ids = [item_1, item_2, item_3, item_4, item_5].map do |item|
           item.id
         end
-        expected_names = [item_3, item_1, item_4, item_5, item_6].map do |item|
+        expected_names = [item_1, item_2, item_3, item_4, item_5].map do |item|
           item.name
         end
         actual_ids = merchant.top_5_items.map do |item|
@@ -214,7 +214,8 @@ RSpec.describe Merchant, type: :model do
         actual_names = merchant.top_5_items.map do |item|
           item.name
         end
-        # expect(merchant.top_5_items).to contain_exactly(item_3, item_1, item_4, item_5, item_6)
+
+
         expect(actual_ids).to eq(expected_ids)
         expect(actual_names).to eq(expected_names)
       end
