@@ -30,3 +30,4 @@
 vendor
 coverage
 config/application.yml
+.vscode
