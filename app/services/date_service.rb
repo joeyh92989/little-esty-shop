@@ -5,7 +5,7 @@ class DateService
   attr_reader :holidays
 
   def initialize
-  @holidays = get_upcoming_holidays
+  @holidays ||= get_upcoming_holidays
   end
 
   def get_upcoming_holidays
