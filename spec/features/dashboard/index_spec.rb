@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe "merchant dashboard" do
   before :each do
     @merchant_1 = create(:merchant)
+    @bulk_discount = create_list :bulk_discount, 3
     @item = create_list(:item, 6, merchant: @merchant_1)
 
     @invoice_1 = create(:invoice, created_at: Time.new(2000, 5, 10))
@@ -31,7 +32,7 @@ RSpec.describe "merchant dashboard" do
     @transaction_4 = create_list(:transaction, 7, result: 0, invoice: @invoice_4)
     @transaction_5 = create_list(:transaction, 5, result: 0, invoice: @invoice_5)
     @transaction_6 = create_list(:transaction, 3, result: 1, invoice: @invoice_6)
-
+    
     visit "/merchants/#{@merchant_1.id}/dashboard"
   end
 
