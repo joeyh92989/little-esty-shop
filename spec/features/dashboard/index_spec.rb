@@ -66,4 +66,7 @@ RSpec.describe "merchant dashboard" do
   it "shows invoices ordered from oldest to newest by creation" do
     expect(@invoice_1.date).to appear_before(@invoice_2.date)
   end
+  it "Shows a link for the bulk discount index page" do
+    expect(page).to have_link("Bulk Discounts")
+  end
 end
