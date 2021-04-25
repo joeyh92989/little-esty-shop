@@ -2,21 +2,17 @@ require 'faraday'
 require 'json'
 require 'pry'
 class DateService
-  attr_reader :holiday,
+  attr_reader :holidays
 
   def initialize
-  @holiday ||= get_upcoming_holidays
-
+  @holidays = get_upcoming_holidays
   end
 
   def get_upcoming_holidays
     resp =  Faraday.get('https://date.nager.at/Api/v2/NextPublicHolidays/US')
     parsed = JSON.parse(resp.body, symbolize_names: true)
-    upcoming_holidays = parsed[0..3]
-    binding.pry
+    upcoming_holidays = parsed[0..2]
   end
 end
 
-test = DateService.new
-test.get_upcoming_holidays
 

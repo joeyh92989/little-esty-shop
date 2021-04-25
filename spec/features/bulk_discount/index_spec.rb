@@ -32,7 +32,8 @@ RSpec.describe "merchant dashboard" do
     @transaction_4 = create_list(:transaction, 7, result: 0, invoice: @invoice_4)
     @transaction_5 = create_list(:transaction, 5, result: 0, invoice: @invoice_5)
     @transaction_6 = create_list(:transaction, 3, result: 1, invoice: @invoice_6)
-    
+
+    @holiday = (DateService.new).holidays
     visit "/merchants/#{@merchant_1.id}/bulk_discounts"
   end
 
@@ -56,5 +57,16 @@ RSpec.describe "merchant dashboard" do
       expect(page).to have_content(@bulk_discount[2].threshold)
       expect(page).to have_content(@bulk_discount[2].discount)
     end
+  end
+  it "lists the upcoming holidays" do
+      expect(page).to have_content("Upcoming Holidays")
+
+      expect(page).to have_content("Name: #{@holiday[0][:name]}")
+      expect(page).to have_content("Date: #{@holiday[0][:date]}")
+      expect(page).to have_content("Name: #{@holiday[1][:name]}")
+      expect(page).to have_content("Date: #{@holiday[1][:date]}")
+      expect(page).to have_content("Name: #{@holiday[2][:name]}")
+      expect(page).to have_content("Date: #{@holiday[2][:date]}")
+
   end
 end
