@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "merchant dashboard" do
   before :each do
     @merchant_1 = create(:merchant)
-    @bulk_discount = create_list :bulk_discount, 3
+    @bulk_discount = create_list :bulk_discount, 3, merchant: @merchant_1
     @item = create_list(:item, 6, merchant: @merchant_1)
 
     @invoice_1 = create(:invoice, created_at: Time.new(2000, 5, 10))
@@ -33,42 +33,28 @@ RSpec.describe "merchant dashboard" do
     @transaction_5 = create_list(:transaction, 5, result: 0, invoice: @invoice_5)
     @transaction_6 = create_list(:transaction, 3, result: 1, invoice: @invoice_6)
     
-    visit "/merchants/#{@merchant_1.id}/dashboard"
+    visit "/merchants/#{@merchant_1.id}/bulk_discounts"
   end
 
-  it "shows merchant name" do
-    expect(page).to have_content(@merchant_1.name)
-  end
+  it "lists all bulk_discounts" do
+    
 
-  it "show link to items index" do
-    click_link("Items")
-    expect(current_path).to eq("/merchants/#{@merchant_1.id}/items")
-  end
+    expect(page).to have_content("Bulk Discounts")
 
-  it "show link to invoices index" do
-    click_link("Invoices")
-    expect(current_path).to eq("/merchants/#{@merchant_1.id}/invoices")
-  end
-
-  it "shows names of the top 5 customers by successful transactions" do
-    expect(@customer_1.first_name).to appear_before(@customer_2.first_name)
-    expect(@customer_3.first_name).to appear_before(@customer_4.first_name)
-  end
-
-  it "should show invoice id as link" do
-    expect(page).to have_link("#{@invoice_1.id}")
-  end
-
-  it "show a section called items ready to ship" do
-    expect(page).to have_content("Items Ready to Ship")
-  end
-
-  it "shows invoices ordered from oldest to newest by creation" do
-    expect(@invoice_1.date).to appear_before(@invoice_2.date)
-  end
-  it "Shows a link for the bulk discount index page" do
-    expect(page).to have_link("Bulk Discounts")
-    click_link("Bulk Discounts")
-    expect(current_path).to eq("/merchants/#{@merchant_1.id}/bulk_discounts")
+    within "#bulk_discount-#{@bulk_discount[0].id}" do
+      expect(page).to have_link("#{@bulk_discount[0].name}")
+      expect(page).to have_content(@bulk_discount[0].threshold)
+      expect(page).to have_content(@bulk_discount[0].discount)
+    end
+    within "#bulk_discount-#{@bulk_discount[1].id}" do
+      expect(page).to have_link("#{@bulk_discount[1].name}")
+      expect(page).to have_content(@bulk_discount[1].threshold)
+      expect(page).to have_content(@bulk_discount[1].discount)
+    end
+    within "#bulk_discount-#{@bulk_discount[2].id}" do
+      expect(page).to have_link("#{@bulk_discount[2].name}")
+      expect(page).to have_content(@bulk_discount[2].threshold)
+      expect(page).to have_content(@bulk_discount[2].discount)
+    end
   end
 end

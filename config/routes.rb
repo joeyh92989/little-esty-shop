@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "/admin", to: 'admin/dashboard#index'
 
   resources :merchants do
-    resources :invoices, :items do
+    resources :invoices, :items, :bulk_discounts do
       member do
         post :update_status
       end
