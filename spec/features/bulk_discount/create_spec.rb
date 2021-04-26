@@ -32,6 +32,6 @@ RSpec.describe "merchant dashboard" do
     click_button 'Save'
 
     expect(page).to have_current_path("/merchants/#{@merchant_1.id}/bulk_discounts/new")
-    expect(page).to have_content("Error: Name can't be blank, Threshold can't be blank, Threshold is not a number, Threshold is not a number, Discount can't be blank, Discount is not a number, Discount is not a number\nNew Bulk Discount\nName Threshold Discount\nRepo name: little-esty-shop\nUser name: austinandrade Commits: 79\nUser name: joeyh92989 Commits: 73\nUser name: joeray100 Commits: 30\nPull Requests: 30")
+    expect(page).to have_content("Error: Name can't be blank, Threshold can't be blank, Threshold is not a number, Threshold is not a number, Discount can't be blank, Discount is not a number, Discount is not a number")
   end
 end
