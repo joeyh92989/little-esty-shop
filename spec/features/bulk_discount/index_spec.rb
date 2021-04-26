@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "merchant dashboard" do
+RSpec.describe "bulk discount index" do
   before :each do
     @merchant_1 = create(:merchant)
     @bulk_discount = create_list :bulk_discount, 3, merchant: @merchant_1

@@ -33,7 +33,11 @@ class BulkDiscountsController < ApplicationController
       flash[:alert] = "Error: #{error_message(big_discount.errors)}"
     end
   end
-
+  def edit
+    binding.pry
+    @merchant = Merchant.find(params[:merchant_id])
+    @bulk_discount = BulkDiscount.find(params[:id])
+  end
   def destroy
     bulk_discount = BulkDiscount.find(params[:id])
     BulkDiscount.delete(bulk_discount)
