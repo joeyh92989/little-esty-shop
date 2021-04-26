@@ -76,7 +76,7 @@ RSpec.describe "merchant dashboard" do
     expect(page).to have_current_path("/merchants/#{@merchant_1.id}/bulk_discounts/new")
 
   end
-  it "has a button delete a bulk discount and can delete a bulk discount"
+  it "has a button delete a bulk discount and can delete a bulk discount" do 
 
     within "#bulk_discount-#{@bulk_discount[0].id}" do
       expect(page).to have_button('Delete')
@@ -84,4 +84,5 @@ RSpec.describe "merchant dashboard" do
     end
     expect(page).to have_current_path("/merchants/#{@merchant_1.id}/bulk_discounts")
     expect(page).not_to have_selector("#bulk_discount-#{@bulk_discount[0].id}")
+  end
 end
