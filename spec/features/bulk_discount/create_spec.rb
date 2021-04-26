@@ -20,7 +20,7 @@ RSpec.describe "merchant dashboard" do
 
     fill_in 'Name', with: 'Big Discount'
     fill_in 'Threshold', with: 10
-    fill_in 'Discount', with: 0.5
+    fill_in 'Discount', with: 50
     click_button 'Save'
     expect(page).to have_current_path("/merchants/#{@merchant_1.id}/bulk_discounts")
     expect(page).to have_content('Big Discount')
@@ -32,6 +32,6 @@ RSpec.describe "merchant dashboard" do
     click_button 'Save'
 
     expect(page).to have_current_path("/merchants/#{@merchant_1.id}/bulk_discounts/new")
-    expect(page).to have_content("Error: Name can't be blank, Threshold can't be blank, Threshold is not a number, Threshold is not a number, Discount can't be blank, Discount is not a number, Discount is not a number")
+    expect(page).to have_content("Error: Name can't be blank, Threshold can't be blank, Threshold is not a number, Threshold is not a number, Discount must be greater than 0")
   end
 end

@@ -44,18 +44,18 @@ RSpec.describe "merchant dashboard" do
 
     within "#bulk_discount-#{@bulk_discount[0].id}" do
       expect(page).to have_link("#{@bulk_discount[0].name}")
-      expect(page).to have_content(@bulk_discount[0].threshold)
-      expect(page).to have_content(@bulk_discount[0].discount)
+      expect(page).to have_content("Threshold:#{@bulk_discount[0].threshold}")
+      expect(page).to have_content("Discount:#{((@bulk_discount[0].discount)*100)}%")
     end
     within "#bulk_discount-#{@bulk_discount[1].id}" do
       expect(page).to have_link("#{@bulk_discount[1].name}")
-      expect(page).to have_content(@bulk_discount[1].threshold)
-      expect(page).to have_content(@bulk_discount[1].discount)
+      expect(page).to have_content("Threshold:#{@bulk_discount[1].threshold}")
+      expect(page).to have_content("Discount:#{((@bulk_discount[1].discount)*100)}%")
     end
     within "#bulk_discount-#{@bulk_discount[2].id}" do
       expect(page).to have_link("#{@bulk_discount[2].name}")
-      expect(page).to have_content(@bulk_discount[2].threshold)
-      expect(page).to have_content(@bulk_discount[2].discount)
+      expect(page).to have_content("Threshold:#{@bulk_discount[2].threshold}")
+      expect(page).to have_content("Discount:#{((@bulk_discount[2].discount)*100)}%")
     end
   end
   it "lists the upcoming holidays" do
