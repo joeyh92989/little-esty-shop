@@ -34,10 +34,28 @@ class BulkDiscountsController < ApplicationController
     end
   end
   def edit
-    binding.pry
+
     @merchant = Merchant.find(params[:merchant_id])
     @bulk_discount = BulkDiscount.find(params[:id])
   end
+  def update
+
+    @merchant = Merchant.find(params[:merchant_id])
+    discount = ((params[:discount]).to_f)/100
+    bulk_discount = BulkDiscount.find(params[:id])
+
+    if bulk_discount.update(
+      name: params[:name],
+      discount: discount,
+      threshold: params[:threshold],
+      merchant: @merchant)
+      redirect_to "/merchants/#{@merchant.id}/bulk_discounts/#{bulk_discount.id}"
+    else
+      redirect_to "/merchants/#{@merchant.id}/bulk_discounts/#{bulk_discount.id}/edit"
+      flash[:alert] = "Error: #{error_message(bulk_discount.errors)}"
+    end
+  end
+
   def destroy
     bulk_discount = BulkDiscount.find(params[:id])
     BulkDiscount.delete(bulk_discount)
