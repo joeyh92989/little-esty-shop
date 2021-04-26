@@ -9,6 +9,9 @@
   </div>
 <% end %>
 <h2>Discounts</h2>
+
+<%=link_to "Create Bulk Discount", "/merchants/#{@merchant.id}/bulk_discounts/new"%>
+
 <% @bulk_discounts.each do |discount| %>
   <div id="bulk_discount-<%=discount.id %>">
     <%=link_to "#{discount.name}", "/merchants/#{@merchant.id}/bulk_discounts/#{discount.id}" %>

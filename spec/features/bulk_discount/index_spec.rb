@@ -69,4 +69,11 @@ RSpec.describe "merchant dashboard" do
       expect(page).to have_content("Date: #{@holiday[2][:date]}")
 
   end
+  it "has a link to create a new bulk discount" do
+
+    expect(page).to have_link("Create Bulk Discount")
+    click_link('Create Bulk Discount')
+    expect(page).to have_current_path("/merchants/#{@merchant_1.id}/bulk_discounts/new")
+
+  end
 end
