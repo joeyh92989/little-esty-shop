@@ -1,3 +1,4 @@
+
 class GitHubService
   attr_reader :name,
               :commits_and_names,

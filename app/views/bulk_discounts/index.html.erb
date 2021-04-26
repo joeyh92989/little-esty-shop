@@ -1,0 +1,22 @@
+<h1> Bulk Discounts </h1>
+
+<h2>Upcoming Holidays</h2>
+<% @holidays.each do |holiday| %>
+  <div id="holiday-<%=holiday[:name]%>">
+    <p> Name: <%= holiday[:name]%>
+    <p> Date: <%= holiday[:date]%>
+    <br>
+  </div>
+<% end %>
+<h2>Discounts</h2>
+
+<%=link_to "Create Bulk Discount", "/merchants/#{@merchant.id}/bulk_discounts/new"%>
+
+<% @bulk_discounts.each do |discount| %>
+  <div id="bulk_discount-<%=discount.id %>">
+    <%=link_to "#{discount.name}", "/merchants/#{@merchant.id}/bulk_discounts/#{discount.id}" %>
+    <p> Discount:<%= discount.discount%>
+    <p> Threshold:<%= discount.threshold%>
+    <br>
+  </div>
+<% end %>
