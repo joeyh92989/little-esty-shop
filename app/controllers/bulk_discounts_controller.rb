@@ -5,6 +5,12 @@ class BulkDiscountsController < ApplicationController
     @bulk_discounts = @merchant.bulk_discounts
     @holidays = (DateService.new).holidays
   end
+
+  def show
+  
+    @merchant = Merchant.find(params[:merchant_id])
+    @bulk_discount = BulkDiscount.find(params[:id])
+  end
   def new
 
     @merchant = Merchant.find(params[:merchant_id])
@@ -12,7 +18,13 @@ class BulkDiscountsController < ApplicationController
 
   def create
     @merchant = Merchant.find(params[:merchant_id])
-    big_discount = BulkDiscount.new(bulk_discount_params)
+    discount = ((params[:discount]).to_f)/100
+
+    big_discount = BulkDiscount.new(
+      name: params[:name],
+      discount: discount,
+      threshold: params[:threshold],
+      merchant: @merchant)
 
     if big_discount.save
       redirect_to "/merchants/#{@merchant.id}/bulk_discounts"
@@ -21,9 +33,30 @@ class BulkDiscountsController < ApplicationController
       flash[:alert] = "Error: #{error_message(big_discount.errors)}"
     end
   end
+  def edit
+
+    @merchant = Merchant.find(params[:merchant_id])
+    @bulk_discount = BulkDiscount.find(params[:id])
+  end
+  def update
+
+    @merchant = Merchant.find(params[:merchant_id])
+    discount = ((params[:discount]).to_f)/100
+    bulk_discount = BulkDiscount.find(params[:id])
+
+    if bulk_discount.update(
+      name: params[:name],
+      discount: discount,
+      threshold: params[:threshold],
+      merchant: @merchant)
+      redirect_to "/merchants/#{@merchant.id}/bulk_discounts/#{bulk_discount.id}"
+    else
+      redirect_to "/merchants/#{@merchant.id}/bulk_discounts/#{bulk_discount.id}/edit"
+      flash[:alert] = "Error: #{error_message(bulk_discount.errors)}"
+    end
+  end
 
   def destroy
-    binding.pry 
     bulk_discount = BulkDiscount.find(params[:id])
     BulkDiscount.delete(bulk_discount)
     redirect_to "/merchants/#{params[:merchant_id]}/bulk_discounts"
