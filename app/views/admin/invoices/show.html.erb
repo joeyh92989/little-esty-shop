@@ -10,7 +10,7 @@
         <% end %>
         <p>Invoice Creation Date:<%=@invoice.created_at.to_time.strftime(' %A, %B %e, %Y')%>
           <p>Invoice Customer:<%=@invoice.customer.first_name%> <%=@invoice.customer.last_name%>
-            <p>Invoice Total Revenue:<%= @invoice.total_revenue%>
+            <p>Invoice Total Revenue:<%= @invoice.total_rev_with_discounts%>
             </div>
           </section>
           <section>

@@ -75,8 +75,22 @@ RSpec.describe 'the admin invoice show' do
     within "#invoice-#{invoice.id}" do
       expect(page).to have_content('completed')
     end
-    it 'has a drop down selector for invoice status and allows user to update the value ' do
-      
-    end
   end
+    it 'displays the total rev with discounts' do
+      merchant = create(:merchant)
+      bulk_discount = create :bulk_discount , threshold: 5
+      customer = create(:customer)
+      item_1 = create_list :item, 10, merchant: merchant
+      invoice_2 = create :invoice
+      invoice_items_1 = create :invoice_item, quantity: 5, invoice: invoice_2, item: item_1.first
+      transaction_1 = create_list :transaction, 10, invoice: merchant.invoices.first
+  
+      merchant_invoices = merchant.invoices.uniq
+      invoice_items = merchant_invoices.first.invoice_items
+      visit "/admin/invoices/#{invoice_2.id}"
+
+      within "#invoice-#{invoice_2.id}" do
+        expect(page).to have_content(invoice_2.total_rev_with_discounts)
+      end
+    end
 end
