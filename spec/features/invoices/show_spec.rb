@@ -82,4 +82,22 @@ RSpec.describe 'the merchant invoice show' do
       expect(page).to have_content('packaged')
     end
   end
+  it 'displays the total revenue within the admin invoice show, inclusive of discounts ' do
+    merchant = create(:merchant)
+    bulk_discount = create :bulk_discount , threshold: 5
+    customer = create(:customer)
+    item_1 = create_list :item, 10, merchant: merchant
+    invoice_2 = create :invoice
+    invoice_items_1 = create :invoice_item, quantity: 5, invoice: invoice_2, item: item_1.first
+    transaction_1 = create_list :transaction, 10, invoice: merchant.invoices.first
+
+    merchant_invoices = merchant.invoices.uniq
+    invoice_items = merchant_invoices.first.invoice_items
+    visit "/merchants/#{merchant.id}/invoices/#{merchant_invoices.first.id})"
+    binding.pry
+    within "#invoice-#{merchant_invoices.first.id}" do
+      expect(page).to have_content(merchant_invoices.first.total_rev_with_discounts)
+      
+    end
+  end
 end
