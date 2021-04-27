@@ -16,7 +16,7 @@
   <div id="bulk_discount-<%=discount.id %>">
     <%=link_to "#{discount.name}", "/merchants/#{@merchant.id}/bulk_discounts/#{discount.id}" %>
     <%= button_to "Delete", "/merchants/#{@merchant.id}/bulk_discounts/#{discount.id}",  method: :delete  %>
-    <p> Discount:<%= (discount.discount)*100%>%
+    <p> Discount:<%= (discount.discount)%>%
     <p> Threshold:<%= discount.threshold%>
     <br>
   </div>

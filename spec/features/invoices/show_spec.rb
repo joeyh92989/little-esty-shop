@@ -94,7 +94,6 @@ RSpec.describe 'the merchant invoice show' do
     merchant_invoices = merchant.invoices.uniq
     invoice_items = merchant_invoices.first.invoice_items
     visit "/merchants/#{merchant.id}/invoices/#{merchant_invoices.first.id})"
-    binding.pry
     within "#invoice-#{merchant_invoices.first.id}" do
       expect(page).to have_content(merchant_invoices.first.total_rev_with_discounts)
       
