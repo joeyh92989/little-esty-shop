@@ -17,6 +17,12 @@ class Invoice < ApplicationRecord
     invoice_items.sum('invoice_items.unit_price * invoice_items.quantity')
   end
 
+  def discounted_rev
+    invoice_items.joins(:bulk_discounts)
+    .where('invoice_items.quantity >= bulk_discounts.threshold')
+    .sum('invoice_items.unit_price * invoice_items.quantity * bulk_discounts.discount / 100')
+  end
+
   def date
     created_at.strftime("%A, %B, %d, %Y")
   end

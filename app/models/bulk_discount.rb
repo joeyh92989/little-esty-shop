@@ -4,6 +4,6 @@ class BulkDiscount < ApplicationRecord
   validates :threshold, numericality: true
   validates  :discount, numericality: true
   validates_numericality_of :threshold,  greater_than: 0
-  validates_numericality_of :discount,  greater_than: 0,  less_than:  1.0
+  validates_numericality_of :discount,  greater_than: 0,  less_than: 100
 
 end

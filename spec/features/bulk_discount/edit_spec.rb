@@ -20,7 +20,7 @@ RSpec.describe "bulk discount edit" do
     expect(find('form')).to have_content('Threshold')
     expect(page).to have_field("Threshold", with: "#{@bulk_discount.threshold}")
     expect(find('form')).to have_content('Discount')
-    expect(page).to have_field("Discount", with: "#{(@bulk_discount.discount)*100}")
+    expect(page).to have_field("Discount", with: "#{(@bulk_discount.discount)}")
   end
   it 'edits the bulk discount and redirects to the merchants bulk discount index' do
     visit "/merchants/#{@merchant_1.id}/bulk_discounts/#{@bulk_discount.id}/edit"
