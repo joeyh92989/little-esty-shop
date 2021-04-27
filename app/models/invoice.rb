@@ -23,6 +23,12 @@ class Invoice < ApplicationRecord
     .sum('invoice_items.unit_price * invoice_items.quantity * bulk_discounts.discount / 100')
   end
 
+  def total_rev_with_discounts
+    total = total_revenue
+    discount = discounted_rev
+    total - discount
+  end
+
   def date
     created_at.strftime("%A, %B, %d, %Y")
   end
