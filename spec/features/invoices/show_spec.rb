@@ -84,7 +84,7 @@ RSpec.describe 'the merchant invoice show' do
   end
   it 'displays the total revenue within the admin invoice show, inclusive of discounts ' do
     merchant = create(:merchant)
-    bulk_discount = create :bulk_discount , threshold: 5
+    bulk_discount = create :bulk_discount , threshold: 5, merchant: merchant
     customer = create(:customer)
     item_1 = create_list :item, 10, merchant: merchant
     invoice_2 = create :invoice
@@ -96,7 +96,47 @@ RSpec.describe 'the merchant invoice show' do
     visit "/merchants/#{merchant.id}/invoices/#{merchant_invoices.first.id})"
     within "#invoice-#{merchant_invoices.first.id}" do
       expect(page).to have_content(merchant_invoices.first.total_rev_with_discounts)
-      
     end
   end
+    it 'it shows link for the bulk discount applied if applicable' do
+      merchant = create(:merchant)
+      bulk_discount = create :bulk_discount , threshold: 5, merchant: merchant
+      customer = create(:customer)
+      item_1 = create_list :item, 10, merchant: merchant
+      invoice_2 = create :invoice
+      invoice_items_1 = create :invoice_item, quantity: 5, invoice: invoice_2, item: item_1.first
+      invoice_items_2 = create :invoice_item, quantity: 2, invoice: invoice_2, item: item_1.first
+      transaction_1 = create_list :transaction, 10, invoice: merchant.invoices.first
+  
+      merchant_invoices = merchant.invoices.uniq
+      invoice_items = merchant_invoices.first.invoice_items
+      visit "/merchants/#{merchant.id}/invoices/#{merchant_invoices.first.id})"
+
+      within "#invoice-item-#{invoice_items_1.id}" do
+        expect(page).to have_link 'Bulk Discount'
+      end
+      within "#invoice-item-#{invoice_items_2.id}" do
+        expect(page).to_not have_link 'Bulk Discount'
+      end
+    end
+    it 'it shows link for the bulk discount applied, when cliked i see the applicable bulk discount show page' do
+      merchant = create(:merchant)
+      bulk_discount = create :bulk_discount , threshold: 5, merchant: merchant
+      customer = create(:customer)
+      item_1 = create_list :item, 10, merchant: merchant
+      invoice_2 = create :invoice
+      invoice_items_1 = create :invoice_item, quantity: 5, invoice: invoice_2, item: item_1.first
+      invoice_items_2 = create :invoice_item, quantity: 2, invoice: invoice_2, item: item_1.first
+      transaction_1 = create_list :transaction, 10, invoice: merchant.invoices.first
+  
+      merchant_invoices = merchant.invoices.uniq
+      invoice_items = merchant_invoices.first.invoice_items
+      visit "/merchants/#{merchant.id}/invoices/#{merchant_invoices.first.id})"
+
+      within "#invoice-item-#{invoice_items_1.id}" do
+        expect(page).to have_link 'Bulk Discount'
+        click_on 'Bulk Discount'
+      end
+      expect(page).to have_current_path("/merchants/#{merchant.id}/bulk_discounts/#{bulk_discount.id}")
+    end
 end

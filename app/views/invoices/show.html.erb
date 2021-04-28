@@ -15,6 +15,9 @@
               <div id="invoice-item-<%= invoice_item.id %>">
                 <p>Name:<%= invoice_item.item.name%>
                   <p>Item quantity:<%= invoice_item.quantity%>
+                    <% unless invoice_item.applicable_discount.nil?%>
+                      <p><%= link_to 'Bulk Discount', "/merchants/#{@merchant.id}/bulk_discounts/#{invoice_item.applicable_discount.id}" %>
+                    <%end%>
                     <p>Item price:<%= invoice_item.unit_price%>
                       <p>Item status:<%= invoice_item.status%>
                         <%= form_with url: "/merchants/#{@merchant.id}/invoices/#{@invoice.id}", method: :patch, local: true do |f| %>
