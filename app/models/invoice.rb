@@ -18,9 +18,16 @@ class Invoice < ApplicationRecord
   end
 
   def discounted_rev
-    invoice_items.joins(:bulk_discounts)
+    output = invoice_items.joins(:bulk_discounts)
     .where('invoice_items.quantity >= bulk_discounts.threshold')
-    .sum('invoice_items.unit_price * invoice_items.quantity * bulk_discounts.discount / 100')
+    .group(:id)
+    .select('max(bulk_discounts.discount) as max, invoice_items.*')
+    stage= output.map do |invoice_item|
+      a = (invoice_item.unit_price * invoice_item.quantity)
+      b = (invoice_item.unit_price * invoice_item.quantity * invoice_item.max) / 100
+      a-b
+    end
+    stage.sum
   end
 
   def total_rev_with_discounts
@@ -33,3 +40,4 @@ class Invoice < ApplicationRecord
     created_at.strftime("%A, %B, %d, %Y")
   end
 end
+
