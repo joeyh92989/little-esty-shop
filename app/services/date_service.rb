@@ -1,6 +1,3 @@
-require 'faraday'
-require 'json'
-require 'pry'
 class DateService
   attr_reader :holidays
 
