@@ -18,11 +18,11 @@ class BulkDiscountsController < ApplicationController
 
   def create
     @merchant = Merchant.find(params[:merchant_id])
-    discount = ((params[:discount]).to_f)/100
+
 
     big_discount = BulkDiscount.new(
       name: params[:name],
-      discount: discount,
+      discount: params[:discount],
       threshold: params[:threshold],
       merchant: @merchant)
 
@@ -41,12 +41,12 @@ class BulkDiscountsController < ApplicationController
   def update
 
     @merchant = Merchant.find(params[:merchant_id])
-    discount = ((params[:discount]).to_f)/100
+
     bulk_discount = BulkDiscount.find(params[:id])
 
     if bulk_discount.update(
       name: params[:name],
-      discount: discount,
+      discount: params[:discount],
       threshold: params[:threshold],
       merchant: @merchant)
       redirect_to "/merchants/#{@merchant.id}/bulk_discounts/#{bulk_discount.id}"

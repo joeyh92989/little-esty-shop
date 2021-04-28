@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_04_25_185316) do
 
   create_table "bulk_discounts", force: :cascade do |t|
     t.integer "threshold"
-    t.decimal "discount"
+    t.integer "discount"
     t.bigint "merchant_id"
     t.string "name"
     t.datetime "created_at", null: false

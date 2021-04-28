@@ -7,7 +7,7 @@
   <%= f.number_field :threshold, :value => @bulk_discount.threshold %>
 
   <%= f.label :discount %>
-  <%= f.number_field :discount, :value => ((@bulk_discount.discount)*100) %>
+  <%= f.number_field :discount, :value => ((@bulk_discount.discount)) %>
 
   <%= f.submit %>
 <% end %>

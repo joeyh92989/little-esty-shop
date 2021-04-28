@@ -32,6 +32,6 @@ RSpec.describe "bulk discount create " do
     click_button 'Save'
 
     expect(page).to have_current_path("/merchants/#{@merchant_1.id}/bulk_discounts/new")
-    expect(page).to have_content("Error: Name can't be blank, Threshold can't be blank, Threshold is not a number, Threshold is not a number, Discount must be greater than 0")
+    expect(page).to have_content("Error: Name can't be blank, Threshold can't be blank, Threshold is not a number, Threshold is not a number, Discount can't be blank, Discount is not a number, Discount is not a number")
   end
 end
