@@ -1,4 +1,3 @@
-
 class GitHubService
   attr_reader :name,
               :commits_and_names,
@@ -31,7 +30,6 @@ class GitHubService
     contributor_information = parsed.each_with_object({}) do |login, total|
       total[login[:author][:login]] = login[:total]
     end
-
   end
 
   def get_repo_pulls

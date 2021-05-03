@@ -1,12 +1,12 @@
 <%= form_with url: "/merchants/#{@merchant.id}/items/#{@item.id}", method: :patch, local: true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, :value => @item.name %>
+<%= f.label :name %>
+<%= f.text_field :name, :value => @item.name %>
 
-  <%= f.label :description %>
-  <%= f.text_field :description, :value => @item.description %>
+<%= f.label :description %>
+<%= f.text_field :description, :value => @item.description %>
 
-  <%= f.label :unit_price %>
-  <%= f.number_field :unit_price, :value => @item.unit_price %>
+<%= f.label :unit_price %>
+<%= f.number_field :unit_price, :value => @item.unit_price %>
 
-  <%= f.submit :submit %>
+<%= f.submit :submit %>
 <% end %>

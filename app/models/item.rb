@@ -9,23 +9,24 @@ class Item < ApplicationRecord
 
   def total_rev
     invoice_items.joins(invoice: :transactions)
-    .where('transactions.result = 0')
-    .sum('invoice_items.unit_price * invoice_items.quantity')
+                 .where('transactions.result = 0')
+                 .sum('invoice_items.unit_price * invoice_items.quantity')
   end
 
   def self.enabled
-    where(status: "enabled")
+    where(status: 'enabled')
   end
 
   def self.disabled
-    where(status: "disabled")
+    where(status: 'disabled')
   end
+
   def top_day
-    invoices.
-    select('invoices.created_at')
-    .group('invoices.created_at')
-    .order(count: :desc)
-    .first
-    .created_at
+    invoices
+      .select('invoices.created_at')
+      .group('invoices.created_at')
+      .order(count: :desc)
+      .first
+      .created_at
   end
 end
