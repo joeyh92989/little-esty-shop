@@ -1,75 +1,49 @@
-![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
+# Little Etsy Shop
 
-# Little Esty Shop
-> Additional information or tagline
+[![forthebadge](http://forthebadge.com/images/badges/made-with-ruby.svg)](http://forthebadge.com)
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
-This repo is an interactive online imitation e-commerce website that manages inventory and handles customer invoices.
+# Table of contents
 
-## Installing / Getting started
+- [Usage](#usage)
+- [Installation](#installation)
+- [Uninstallation](#uninstallation)
+- [Contributing](#contributing)
 
-In order to run this repo properly please use Ruby 2.5.3. Also, please be sure to do the following.
-   - Fork this repo
-   - Clone down your fork
-   - In your terminal run the following on the command line
+# Usage
 
-```shell
-bundle
-bundle update
-rails db:create
-bundle exec rspec
-rails s
-```
+[(Back to top)](#table-of-contents)
+The Little Esty(Etsy) shop is an exercise to build a large scale relational database to mimic an ecommerce shop allowing administrators and merchants to fulfill customer invoices. This application tested our ability to:
+1. Create custom rake tasks to parse and ingest CSVs into a PostreSQL database
+2. Build a relational database including 7 tables, including joins tables
+3. Create full CRUD workflows for many of the objects in the database
+4. Create complex SQL and ActiveRecord methods using large sets of data
+5. Create Views to allows users to interact and view the data within the database
+6. Consume multiple public APIs to enhance the users experience
 
-The code above installs all gems in the Gemfile and updates the Gemfile.lock. Also, it will create your database, run existing tests, and start your local server.
+# Installation
 
-### Initial Configuration
+[(Back to top)](#table-of-contents)
+## Local
 
-Some projects require initial configuration (e.g. access tokens or keys, `npm i`).
-This is the section where you would document those requirements.
-* To use this app fully an API token is required to be installed and loaded, this token is not hardcoded into the application and masked. Therefore a distinct token will need to exist to make use of that functionality
+1. Install Ruby (preferably, version >= 2.5.3)
+2. clone this repo to your local machine
+3. run `bundle install`
+4. run `rails s`
+5. go to `http://localhost:3000/admin`
 
-## Developing
+## Web Hosted
+From your browser go to `https://joey-little-etsy-shop.herokuapp.com/`
 
-Here's a brief intro about what a developer must do in order to start developing
-the project further:
 
-```shell
-git clone https://github.com/joeyh92989/little-esty-shop
-cd little-esty-shop
-atom . 
-```
+# Contributing
 
-You will want to clone down the repository to your computer locally using git. Then cd into the repo. Last, open the repo in your test editor(atom is what's shown above).
+[(Back to top)](#table-of-contents)
 
-### Building
+Made by Joey, Austin, and Joe
+* Joey [Github](https://github.com/joeyh92989), [LinkedIn](https://www.linkedin.com/in/haasjoseph/)
+* Austin [Github](https://github.com/austinandrade),[LinkedIn](https://www.linkedin.com/in/austinandrade/)
+* Joe [Github](https://github.com/joeray100), [LinkedIn](https://www.linkedin.com/in/joe-ray-a46140192/)
 
-If your project needs some additional steps for the developer to build the
-project after some code changes, state them here:
-
-```shell
-./configure
-make
-make install
-```
-
-Here again you should state what actually happens when the code above gets
-executed.
-
-### Deploying / Publishing
-
-In case there's some step you have to take that publishes this project to a
-server, this is the right time to state it.
-
-```shell
-packagemanager deploy awesome-project -s server.com -u username -p password
-```
-
-And again you'd need to tell what the previous code actually does.
-
-## Features
-
-What's all the bells and whistles this project can perform?
-* Have an interactive dashboard for your Merchant/Admin, to display details about the merchants,invoices,items, etc
-* Seemless links and buttons to traverse the website and edit/update information
-* If you get really randy, you can even see you top customers and items you sell AND all from one place.
+Thank you to Turing School of Software and Design for the prompt and inspiration for this project
 
