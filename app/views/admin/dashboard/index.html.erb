@@ -1,25 +1,20 @@
-<nav class="navbar-default">
-  <%= link_to "Merchant Index", "/admin/merchants" %>
-  <%= link_to "Invoice Index", "/admin/invoices" %>
-</nav>
 <h1>Admin Dashboard </h1>
 <div class="row">
   <div class="col-sm-6"></div>
   <h2>Top 5 Customers</h2>
   <% @customers.top_5.each do |customer| %>
-  <div id="customer-<%= customer.id %>">
-    <p class=>Customer Name: <%= customer.first_name %> <%= customer.last_name %></p>
-    <p>Number of succesful transactions: <%= customer.number_of_succesful_transactions %></p>
-    <br>
-  </div>
+    <div id="customer-<%= customer.id %>">
+      <p class=>Customer Name: <%= customer.first_name %> <%= customer.last_name %></p>
+      <p>Number of succesful transactions: <%= customer.number_of_succesful_transactions %></p>
+      <br>
+    </div>
   <% end %>
   <div class="col-sm-6">
     <h2>Invoices With Unshipped Items</h2>
     <% @invoices.unshipped.sort.each do |invoice| %>
-    <div id="invoice-<%= invoice.id %>">
-      <%=link_to "Invoice-#{invoice.id}", "/admin/invoices/#{invoice.id}" %>
-      <br>
-    </div>
+      <div id="invoice-<%= invoice.id %>">
+        <p> <%=link_to "Invoice-#{invoice.id}", "/admin/invoices/#{invoice.id}" %></p>
+      </div>
     <% end %>
   </div>
 </div>
