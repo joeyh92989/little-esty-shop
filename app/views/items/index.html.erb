@@ -1,34 +1,32 @@
 <h2> Items: </h2>
 <% @merchant.items.each do |item| %>
-<p> <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %> </p>
+  <p> <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %> </p>
 <% end %>
 <h2>Top 5 items </h2>
 <% @merchant.top_5_items.each do |item| %>
-<div id="item-top-<%=item.id %>">
-  <p> <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %> </p>
-  <p>Total revenue: <%=item.total_rev%>
-  <p>Total revenue: <%=item.top_day%>
-</div>
+  <div id="item-top-<%=item.id %>">
+    <p> <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %> </p>
+    <p>Total revenue: <%=item.total_rev%></p>
+    <p>Total revenue: <%=item.top_day%></p>
+  </div>
 <% end %>
 <p> <%= link_to "Create New Item", new_merchant_item_path %> </p>
 <div id="enabled_items">
   <h1> Enabled Items: </h1>
-  <h2> <% @enabled_items.each do |item| %>
+  <% @enabled_items.each do |item| %>
     <div id="item-<%= item.id %>">
-      <%= link_to "#{item.name}:", merchant_item_path(@merchant, item) %> <%= item.status %>
-      <%= button_to "disable", {controller: "items", action: "update_status", id: "#{item.id}", :status => 'disable'} %>
+      <p><%= link_to "#{item.name}:", merchant_item_path(@merchant, item) %> <%= item.status %></p>
+      <p><%= button_to "disable", {controller: "items", action: "update_status", id: "#{item.id}", :status => 'disable'} %></p>
     </div>
-    <% end %>
-  </h2>
+  <% end %>
   <br>
 </div>
 <div id="disabled_items">
   <h1> Disabled Items: </h1>
-  <h2> <% @disabled_items.each do |item| %>
+  <% @disabled_items.each do |item| %>
     <div id="item-<%= item.id %>">
-      <%= link_to "#{item.name}:", merchant_item_path(@merchant, item) %> <%= item.status %>
-      <%= button_to "enable", {controller: "items", action: "update_status", id: "#{item.id}", :status => 'enable'} %>
+      <p><%= link_to "#{item.name}:", merchant_item_path(@merchant, item) %> <%= item.status %></p>
+      <p><%= button_to "enable", {controller: "items", action: "update_status", id: "#{item.id}", :status => 'enable'} %></p>
     </div>
-    <% end %>
-  </h2>
+  <% end %>
 </div>
