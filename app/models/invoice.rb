@@ -5,7 +5,7 @@ class Invoice < ApplicationRecord
   has_many :items, through: :invoice_items
   has_many :bulk_discounts, through: :invoice_items
 
-  enum status: [:completed, :cancelled, :"in progress"]
+  enum status: { completed: 0, cancelled: 1, "in progress": 2 }
 
   validates :status, presence: true
 

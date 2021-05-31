@@ -48,6 +48,7 @@ group :development, :test do
   gem "nyan-cat-formatter"
   gem "factory_bot_rails"
   gem "faker"
+  gem 'rubocop-rails'
 end
 
 group :development do
