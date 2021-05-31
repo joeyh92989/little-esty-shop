@@ -9,16 +9,15 @@ class Admin::MerchantsController < ApplicationController
     @merchant = Merchant.find(params[:id])
   end
 
-  def new
-  end
+  def new; end
 
   def create
     merchant = Merchant.new(merchant_params)
 
     if merchant.save
-      redirect_to "/admin/merchants"
+      redirect_to '/admin/merchants'
     else
-      redirect_to "/admin/merchants/new"
+      redirect_to '/admin/merchants/new'
       flash[:alert] = "Error: #{error_message(merchant.errors)}"
     end
   end
@@ -31,23 +30,23 @@ class Admin::MerchantsController < ApplicationController
     merchant = Merchant.find(params[:id])
     if merchant.update(merchant_params)
       redirect_to "/admin/merchants/#{merchant.id}",
-      notice: "successfully updated!"
+                  notice: 'successfully updated!'
     else
       redirect_to "/admin/merchants/#{merchant.id}/edit",
-      alert: "Error: #{error_message(merchant.errors)}"
+                  alert: "Error: #{error_message(merchant.errors)}"
     end
   end
 
   def update_status
     merchant = Merchant.find(params[:id])
     if params[:status] == 'disable'
-      merchant.update(status: "disabled")
-      redirect_to "/admin/merchants",
-      notice: "#{merchant.name} has been disabled!"
+      merchant.update(status: 'disabled')
+      redirect_to '/admin/merchants',
+                  notice: "#{merchant.name} has been disabled!"
     elsif params[:status] == 'enable'
-      merchant.update(status: "enabled")
-      redirect_to "/admin/merchants",
-      notice: "#{merchant.name} has been enabled!"
+      merchant.update(status: 'enabled')
+      redirect_to '/admin/merchants',
+                  notice: "#{merchant.name} has been enabled!"
     end
   end
 

@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>LittleEtsyShop</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
-
-<body class="mainbody">
-  <% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-  <% end %>
-  <%= yield %>
-</body>
-
-<foot class="footer">
-  <%= render partial: 'shared/footer' %>
-</foot>
-
+  <head>
+    <title>LittleEtsyShop</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Little Etsy Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin">Admin Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/merchants">Admin Merchants</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/invoices">Admin Invoices</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <body class="mainbody">
+    <% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+  <foot class="footer">
+    <%= render partial: 'shared/footer' %>
+  </foot>
 </html>

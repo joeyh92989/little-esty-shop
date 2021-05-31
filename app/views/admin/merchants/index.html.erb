@@ -2,33 +2,30 @@
 <div id="top_merchants">
   <h2> Top 5 Merchants: </h2>
   <% @top_5_merchants_by_revenue.each do |merchant| %>
-  <div id="top_merchant-<%= merchant.id %>">
-    <h2> <%= link_to "#{merchant.name}:", {controller: "admin/merchants", action: "show", id: "#{merchant.id}"} %> $<%= merchant.total_revenue %>
-      <br>
-      Top selling date for <%= merchant.name %> was <%= merchant.top_merchant_best_day.to_time.strftime(' %A, %B %e, %Y') %>
+    <div id="top_merchant-<%= merchant.id %>">
+      <p><%= link_to "#{merchant.name}:", {controller: "admin/merchants", action: "show", id: "#{merchant.id}"} %> $<%= merchant.total_revenue %></p>
+      <p>Top selling date for <%= merchant.name %> was <%= merchant.top_merchant_best_day.to_time.strftime(' %A, %B %e, %Y') %></p>
     </h2>
   </div>
-  <% end %>
-  <br>
+<% end %>
+<br>
 </div>
 <div id="enabled_merchants">
   <h1> Enabled Merchants: </h1>
-  <h2> <% @enabled_merchants.each do |merchant| %>
+  <% @enabled_merchants.each do |merchant| %>
     <div id="merchant-<%= merchant.id %>">
-      <%= link_to "#{merchant.name}:", {controller: "admin/merchants", action: "show", id: "#{merchant.id}"} %> <%= merchant.status %>
-      <%= button_to "disable", {controller: "admin/merchants", action: "update_status", id: "#{merchant.id}", :status => 'disable'} %>
+      <p><%= link_to "#{merchant.name}:", {controller: "admin/merchants", action: "show", id: "#{merchant.id}"} %> <%= merchant.status %></p>
+      <p><%= button_to "disable", {controller: "admin/merchants", action: "update_status", id: "#{merchant.id}", :status => 'disable'} %></p>
     </div>
-    <% end %>
-  </h2>
+  <% end %>
   <br>
 </div>
 <div id="disabled_merchants">
   <h1> Disabled Merchants: </h1>
-  <h2> <% @disabled_merchants.each do |merchant| %>
+  <% @disabled_merchants.each do |merchant| %>
     <div id="merchant-<%= merchant.id %>">
-      <%= link_to "#{merchant.name}:", {controller: "admin/merchants", action: "show", id: "#{merchant.id}"} %> <%= merchant.status %>
-      <%= button_to "enable", {controller: "admin/merchants", action: "update_status", id: "#{merchant.id}", :status => 'enable'} %>
+      <p><%= link_to "#{merchant.name}:", {controller: "admin/merchants", action: "show", id: "#{merchant.id}"} %> <%= merchant.status %></p>
+      <p><%= button_to "enable", {controller: "admin/merchants", action: "update_status", id: "#{merchant.id}", :status => 'enable'} %></p>
     </div>
-    <% end %>
-  </h2>
+  <% end %>
 </div>

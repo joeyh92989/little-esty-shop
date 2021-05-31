@@ -1,8 +1,9 @@
 <h1>Admin Invoices </h1>
 <h2>Invoices</h2>
 <% @invoices.each do |invoice| %>
-<div id="invoice-<%= invoice.id %>">
-  <%=link_to "Invoice:#{invoice.id}", "/admin/invoices/#{invoice.id}" %>
-  <br>
-</div>
+  <div id="invoice-<%= invoice.id %>">
+    <ol>
+      <p><%=link_to "Invoice:#{invoice.id}", "/admin/invoices/#{invoice.id}" %> </p>
+    </ol>
+  </div>
 <% end %>

@@ -2,30 +2,30 @@
 <section>
   <h3>Invoice Details</h3>
   <div id="invoice-<%= @invoice.id %>">
-    <p>Invoice ID:<%= @invoice.id%>
-    <p>Invoice Status:<%=@invoice.status%>
-    <p>Invoice Creation Date:<%=@invoice.created_at.to_time.strftime(' %A, %B %e, %Y')%>
-    <p>Invoice Customer:<%=@invoice.customer.first_name%> <%=@invoice.customer.last_name%>
-    <p>Invoice Total Revenue:<%= @invoice.total_rev_with_discounts%>
+    <p>Invoice ID:<%= @invoice.id%></p>
+    <p>Invoice Status:<%=@invoice.status%></p>
+    <p>Invoice Creation Date:<%=@invoice.created_at.to_time.strftime(' %A, %B %e, %Y')%></p>
+    <p>Invoice Customer:<%=@invoice.customer.first_name%> <%=@invoice.customer.last_name%></p>
+    <p>Invoice Total Revenue:<%= @invoice.total_rev_with_discounts%></p>
   </div>
 </section>
 <section>
   <h2>Items on Invoice</h2>
   <% @invoice.invoice_items.each do |invoice_item| %>
-  <div id="invoice-item-<%= invoice_item.id %>">
-    <p>Name:<%= invoice_item.item.name%>
-    <p>Item quantity:<%= invoice_item.quantity%>
+    <div id="invoice-item-<%= invoice_item.id %>">
+      <p>Name:<%= invoice_item.item.name%></p>
+      <p>Item quantity:<%= invoice_item.quantity%></p>
       <% unless invoice_item.applicable_discount.nil?%>
-    <p><%= link_to 'Bulk Discount', "/merchants/#{@merchant.id}/bulk_discounts/#{invoice_item.applicable_discount.id}" %>
+        <p><%= link_to 'Bulk Discount', "/merchants/#{@merchant.id}/bulk_discounts/#{invoice_item.applicable_discount.id}" %></p>
       <%end%>
-    <p>Item price:<%= invoice_item.unit_price%>
-    <p>Item status:<%= invoice_item.status%>
+      <p>Item price:<%= invoice_item.unit_price%></p>
+      <p>Item status:<%= invoice_item.status%></p>
       <%= form_with url: "/merchants/#{@merchant.id}/invoices/#{@invoice.id}", method: :patch, local: true do |f| %>
-      <%= f.hidden_field :invoice_item, :value => invoice_item.id %>
-      <%= f.select :status, ["pending", "packaged", "shipped"], :selected => invoice_item.status%>
-      <%= f.submit %>
+        <%= f.hidden_field :invoice_item, :value => invoice_item.id %>
+        <%= f.select :status, ["pending", "packaged", "shipped"], :selected => invoice_item.status%>
+        <%= f.submit %>
       <% end %>
       <br>
-  </div>
+    </div>
   <% end %>
 </section>

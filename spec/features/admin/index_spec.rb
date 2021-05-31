@@ -25,14 +25,14 @@ RSpec.describe "the admin application index" do
   it "has a link to admin merchant path" do
     visit "/admin"
 
-    click_link("Merchant Index")
+    click_link("Admin Merchants")
     expect(current_path).to eq("/admin/merchants")
   end
 
   it "has a link to admin invoice path" do
     visit "/admin"
 
-    click_link("Invoice Index")
+    click_link("Admin Invoices")
     expect(current_path).to eq("/admin/invoices")
   end
   it "lists the top 5 customers with their number of succesful transctions" do
